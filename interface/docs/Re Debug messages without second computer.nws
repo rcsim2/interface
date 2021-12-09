@@ -1,0 +1,86 @@
+Path: zonnet-reader-1!zonnet-feed!ams-newsfeed.speedport.net!newsfeed.speedport.net!netnews.com!newspeer.monmouth.com!newsfeed.concentric.net!newsfeed.ozemail.com.au!ozemail.com.au!not-for-mail
+From: "Geoff Chappell" <geoffch@no.junk.mail.please>
+Newsgroups: comp.os.ms-windows.programmer.vxd
+References: <961680693.869743@elch.in-berlin.de>
+Subject: Re: Debug messages without second computer?
+Lines: 70
+Organization: none, just embarrassing disorganisation
+X-Newsreader: Microsoft Outlook Express 4.72.3110.1
+X-MimeOLE: Produced By Microsoft MimeOLE V4.72.3110.3
+Message-ID: <4oL55.23556$N4.918767@ozemail.com.au>
+NNTP-Posting-Host: 1cust144.tnt3.bne1.da.uu.net
+X-Trace: ozemail.com.au 962036352 210.84.85.144 (Tue, 27 Jun 2000 02:19:12 EST)
+NNTP-Posting-Date: Tue, 27 Jun 2000 02:19:12 EST
+Distribution: world
+Date: Tue, 27 Jun 2000 02:15:31 +1000
+Xref: zonnet-feed comp.os.ms-windows.programmer.vxd:3093
+
+Peter Remmers wrote in message <961680693.869743@elch.in-berlin.de>...
+>At some point in the DDK it says that you can debug on the same
+>computer if you switch to 640x480 16 colors and set debugvga=1 in
+>the [386enh] section of the system.ini. The you could press F12
+>to call up the debugger on the screen.
+>
+>But I tried it and it doesn't work... wdeb always says that it needs
+>RTerm(98), loads win.com anyay, and pressing F12 when windows has
+>finished booting up has no effect...
+
+The Windows 98 DDK comes with two versions of essentially the same
+kernel-mode debugger. These are named WDEB386 and WDEB98. Be sure to use the
+right one for the sort of debugging you want to do. The DebugVGA option is
+supported only in WDEB386. The RTERM interface is supported only in WDEB98.
+So, it seems you are using WDEB98.
+
+>Second, I read in the docs for _Debug_Out_Service and comrades
+>that these services only work if you have the debug binaries
+>of the OS running, otherwise they have no effect.
+>But in a different part of the DDK documentation it says that
+>you don't necessarily need the debug binaries to successfully
+>write a VxD.
+
+The retail VMM implements most debugging services only trivially. However,
+that doesn't mean the services are available only if you have the debug VMM
+running. It is open to any VxD to hook the debugging services and implement
+them non-trivially. Microsoft's WDEB* debuggers have an embedded DEBUG VxD
+that does this, which conforms to programmers' natural expectation that if
+they run even the retail version of Windows under a debugger then they will
+see any debug output that any VxDs happen to try writing to the debugger.
+
+>So, to sum it up: Is there a way to let my VxD report what's
+>going on, without a second computer and without the debug version
+>of windows?
+
+From Windows 95 onwards, with its support of debug-only sections, you can
+get a debugging environment that is more than adequate for many practical
+purposes without having to install or load any debug versions of any
+standard VxDs. Depending on how you get Windows running under the debugger,
+you may get the debug-only features automatically. However, you can ensure
+that you get debug-only features by putting LoadDebugOnlyObjs=on in the
+[386Enh] section of SYSTEM.INI.
+
+Debug-only features usually include a VxD's dot commands, though it is
+sometimes the case that the implementation in the retail version is not as
+extensive as in the debug version.
+
+Debug-only features rarely include the extra coding of the sort whereby a
+VxD checks expected conditions and reports breaches to the programmer. If
+you want such extra features as implemented in a debug version of any
+standard VxD, then the idea appears to be that you need simply copy that
+VxD's debug version to the VMM32 subdirectory. (Note however that this
+doesn't work for VWIN32, because it is a helper VxD for the Win32 kernel and
+its writers have it simpy assume that the Win32 kernel is also present as a
+debug version.)
+
+>In the early days, when I wrote for Win3.11 I used an application
+>called WinDbg, that opened a window and showed the debug messages
+>there. Is this still an option?
+
+Almost certainly, but you surely do better to have a system-level debugger.
+
+----
+Geoff Chappell
+Consulting Software Analyst
+
+email:  geoffch@ozemail.com.au
+web:   www.ozemail.com.au/~geoffch
+

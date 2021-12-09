@@ -1,0 +1,55 @@
+Message-ID: <398115C4.D981FA3@blarney.att.net>
+Date: Fri, 28 Jul 2000 01:10:28 -0400
+From: Phil Eamon <phileam@blarney.att.net>
+Organization: 2 respond remove blarney
+X-Mailer: Mozilla 4.7 [en] (WinNT; I)
+X-Accept-Language: en
+MIME-Version: 1.0
+Subject: Re: bitmaps
+References: <398086b8$1@news.qgraph.com> <39808A73.BE57E8BB@blarney.att.net> <39809907$1@news.qgraph.com>
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Newsgroups: comp.os.ms-windows.programmer.misc,comp.os.ms-windows.programmer.vxd,microsoft.public.inetsdk.programming.samples,microsoft.public.win32.programmer.gdi,microsoft.public.win32.programmer.messaging
+NNTP-Posting-Host: 94.philadelphia-06-07rs.pa.dial-access.att.net 12.78.210.94
+Path: zonnet-reader-1!zonnet-feed!ams-newsfeed.speedport.net!newsfeed.speedport.net!colt.net!diablo.netcom.net.uk!netcom.net.uk!news1.ebone.net!news2.ebone.net!news.ebone.net!cppssbbsa01.microsoft.com!cppssbbsa05
+Lines: 44
+Xref: zonnet-feed comp.os.ms-windows.programmer.misc:5058 comp.os.ms-windows.programmer.vxd:3552 microsoft.public.win32.programmer.gdi:2817
+
+
+Scott Champagne wrote:
+> 
+> Phil Eamon <phileam@blarney.att.net> wrote in message
+> news:39808A73.BE57E8BB@blarney.att.net...
+> > Scott Champagne wrote:
+> > >
+> > > Does anyone know how to place 1 bitmap inside of another one??  For
+> example
+> > > i have 1 bitmap 5x5 and another bitmap 10x10 and i want the first one to
+> be
+> > > placed in the second one starting at (3,3) overwriting any image that is
+> in
+> > > the 2nd bitmap.
+> > BitBlit( TenByTenDC, 2, 2, FiveByFiveDC, .... );
+>    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+> 
+> I have done this, but then i can't get out the 10x10 bitmap to be able to
+> take it and write it to a file correctly......
+What do you specifically mean by "I can't get out the 10x10 bitmap..."?
+Eh... what is holding you <g>?
+
+Both bitmaps have to be DibSections. The beauty of dib sections is that you
+can hit them as regular, device-specific GDI objects (via bitblit in this
+case) yet they also provide an easy access to the binary data. Them binary
+data are what you need in order to save a bitmap as a dib to disk--the
+blahblah infoheader will the file's header (after blah blah fileheader, of
+course), and then the bits will be the actual data. 
+
+Remember, when you hit HBITMAPs (like in bitblits) you operate on
+DDBitmaps, whose format is basically a "black-box" to you. Not suitable for
+saving externally. 
+
+Now, as an extra comment, there *are* functions to get binary data out of
+DDBs (GetBitmapData...?...Bits? Can't remember. Search the help) and if you
+go that route, those will be the data that are DIB-like and you can use
+them for saving. But I'd not worry about this and simply used two Dib
+Sections. This has got to be the simplest way.

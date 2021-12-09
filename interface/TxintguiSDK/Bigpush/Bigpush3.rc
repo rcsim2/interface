@@ -1,0 +1,457 @@
+//Microsoft Developer Studio generated resource script.
+//
+#include "resource.h"
+
+#define APSTUDIO_READONLY_SYMBOLS
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 2 resource.
+//
+#include "afxres.h"
+
+/////////////////////////////////////////////////////////////////////////////
+#undef APSTUDIO_READONLY_SYMBOLS
+
+/////////////////////////////////////////////////////////////////////////////
+// English (U.S.) resources
+
+#if !defined(AFX_RESOURCE_DLL) || defined(AFX_TARG_ENU)
+#ifdef _WIN32
+LANGUAGE LANG_ENGLISH, SUBLANG_ENGLISH_US
+#pragma code_page(1252)
+#endif //_WIN32
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog
+//
+
+IDD_ABOUT DIALOGEX 0, 0, 216, 114
+STYLE DS_MODALFRAME | WS_POPUP | WS_CAPTION | WS_SYSMENU
+CAPTION "About R/C Sim"
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    DEFPUSHBUTTON   "OK",IDOK,146,14,50,14,0,WS_EX_TRANSPARENT
+    CONTROL         107,IDC_STATIC,"Static",SS_BITMAP,0,0,216,115,
+                    WS_EX_CLIENTEDGE
+END
+
+IDD_CONSOLE DIALOG DISCARDABLE  0, 0, 343, 223
+STYLE DS_MODALFRAME | DS_CENTER | WS_MINIMIZEBOX | WS_POPUP | WS_VISIBLE | 
+    WS_CAPTION | WS_SYSMENU
+CAPTION "R/C Sim Transmitter Calibration"
+FONT 8, "MS Sans Serif"
+BEGIN
+    CONTROL         "Tab1",IDC_TAB1,"SysTabControl32",WS_TABSTOP,7,7,271,209
+    DEFPUSHBUTTON   "OK",IDOK,287,9,50,14
+    PUSHBUTTON      "Cancel",IDCANCEL,287,26,50,14
+    PUSHBUTTON      "&Help",IDC_BUTTON3,287,47,50,14
+    PUSHBUTTON      "&Calibrate",IDC_BUTTON2,287,71,50,14
+END
+
+IDD_DIALOG1 DIALOGEX 0, 0, 258, 189
+STYLE DS_3DLOOK | WS_CHILD
+EXSTYLE WS_EX_CONTROLPARENT
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LISTBOX         IDC_LIST1,181,23,50,113,WS_VSCROLL | WS_TABSTOP,
+                    WS_EX_RIGHT
+    PUSHBUTTON      "&Stop",IDC_BUTTON1,181,135,50,14
+    PUSHBUTTON      "C&lear",IDC_BUTTON2,181,153,50,14
+    GROUPBOX        "Pulse Length",IDC_STATIC,170,7,73,168
+    LTEXT           "I/O Port:",IDC_STATIC,21,23,30,8
+    LTEXT           "378h",IDC_STATIC,53,23,50,8
+    LTEXT           "IRQ:",IDC_STATIC,21,40,16,8
+    LTEXT           "7",IDC_STATIC,53,40,50,8
+    LTEXT           "Status:",IDC_STATIC,21,56,23,8
+    LTEXT           "No Signal",IDC_STATICSTATUS,53,56,63,8
+    LTEXT           "Channel Total:",IDC_STATIC,21,90,47,8
+    LTEXT           "0",IDC_STATICCHANCOUNT,83,90,42,8
+    LTEXT           "Interrupt Count:",IDC_STATIC,21,120,50,8
+    LTEXT           "0",IDC_STATICINTCOUNT,83,120,42,8
+    LTEXT           "Sync Pulse:",IDC_STATIC,21,105,38,8
+    LTEXT           "0",IDC_STATICSYNC,83,105,42,8
+    GROUPBOX        "Resources",IDC_STATIC,9,8,115,67
+END
+
+IDD_DIALOG2 DIALOGEX 0, 0, 263, 188
+STYLE DS_3DLOOK | WS_CHILD
+EXSTYLE WS_EX_CONTROLPARENT
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "H&orizontal",IDC_BUTTONHORIZONTAL,205,170,50,14
+    PUSHBUTTON      "Master",IDC_BUTTONMASTER,55,172,34,12
+    CONTROL         "",IDC_CHECK21,"Button",BS_AUTOCHECKBOX | BS_PUSHLIKE | 
+                    WS_TABSTOP,55,152,8,8
+    CONTROL         "",IDC_CHECK22,"Button",BS_AUTOCHECKBOX | BS_PUSHLIKE | 
+                    WS_TABSTOP,72,152,8,8
+    CONTROL         "",IDC_CHECK23,"Button",BS_AUTOCHECKBOX | BS_PUSHLIKE | 
+                    WS_TABSTOP,89,152,8,8
+    CONTROL         "",IDC_CHECK24,"Button",BS_AUTOCHECKBOX | BS_PUSHLIKE | 
+                    WS_TABSTOP,106,152,8,8
+    CONTROL         "",IDC_CHECK25,"Button",BS_AUTOCHECKBOX | BS_PUSHLIKE | 
+                    WS_TABSTOP,123,152,8,8
+    CONTROL         "",IDC_CHECK26,"Button",BS_AUTOCHECKBOX | BS_PUSHLIKE | 
+                    WS_TABSTOP,140,152,8,8
+    CONTROL         "",IDC_CHECK27,"Button",BS_AUTOCHECKBOX | BS_PUSHLIKE | 
+                    WS_TABSTOP,157,152,8,8
+    CONTROL         "",IDC_CHECK28,"Button",BS_AUTOCHECKBOX | BS_PUSHLIKE | 
+                    WS_TABSTOP,174,152,8,8
+    CONTROL         "",IDC_CHECK29,"Button",BS_AUTOCHECKBOX | BS_PUSHLIKE | 
+                    WS_TABSTOP,191,152,8,8
+    CONTROL         "",IDC_CHECK30,"Button",BS_AUTOCHECKBOX | BS_PUSHLIKE | 
+                    WS_TABSTOP,208,152,8,8
+    CONTROL         "",IDC_CHECK11,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,55,
+                    26,8,8
+    CONTROL         "",IDC_CHECK12,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,72,
+                    26,8,8
+    CONTROL         "",IDC_CHECK13,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,89,
+                    26,8,8
+    CONTROL         "",IDC_CHECK14,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,106,
+                    26,8,8
+    CONTROL         "",IDC_CHECK15,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,123,
+                    26,8,8
+    CONTROL         "",IDC_CHECK16,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,140,
+                    26,8,8
+    CONTROL         "",IDC_CHECK17,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,157,
+                    26,8,8
+    CONTROL         "",IDC_CHECK18,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,174,
+                    26,8,8
+    CONTROL         "",IDC_CHECK19,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,191,
+                    26,8,8
+    CONTROL         "",IDC_CHECK20,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,208,
+                    26,8,8
+    CONTROL         "",IDC_CHECK1,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,55,
+                    13,8,8
+    CONTROL         "",IDC_CHECK2,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,72,
+                    13,8,8
+    CONTROL         "",IDC_CHECK3,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,89,
+                    13,8,8
+    CONTROL         "",IDC_CHECK4,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,105,
+                    13,8,8
+    CONTROL         "",IDC_CHECK5,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,123,
+                    13,8,8
+    CONTROL         "",IDC_CHECK6,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,140,
+                    13,8,8
+    CONTROL         "",IDC_CHECK7,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,157,
+                    13,8,8
+    CONTROL         "",IDC_CHECK8,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,174,
+                    13,8,8
+    CONTROL         "",IDC_CHECK9,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,191,
+                    13,8,8
+    CONTROL         "",IDC_CHECK10,"Button",BS_AUTOCHECKBOX | WS_TABSTOP,208,
+                    13,8,8
+    CONTROL         "Progress3",IDC_PROGRESSVERT1,"msctls_progress32",
+                    WS_BORDER,55,39,9,98
+    CONTROL         "Progress5",IDC_PROGRESSVERT2,"msctls_progress32",
+                    WS_BORDER,72,39,9,98
+    CONTROL         "Progress6",IDC_PROGRESSVERT3,"msctls_progress32",
+                    WS_BORDER,89,39,9,98
+    CONTROL         "Progress7",IDC_PROGRESSVERT4,"msctls_progress32",
+                    WS_BORDER,106,39,9,98
+    CONTROL         "Progress8",IDC_PROGRESSVERT5,"msctls_progress32",
+                    WS_BORDER,123,39,9,98
+    CONTROL         "Progress9",IDC_PROGRESSVERT6,"msctls_progress32",
+                    WS_BORDER,140,39,9,98
+    CONTROL         "Progress10",IDC_PROGRESSVERT7,"msctls_progress32",
+                    WS_BORDER,157,39,9,98
+    CONTROL         "Progress11",IDC_PROGRESSVERT8,"msctls_progress32",
+                    WS_BORDER,174,39,9,98
+    CONTROL         "Progress12",IDC_PROGRESSVERT9,"msctls_progress32",
+                    WS_BORDER,191,39,9,98
+    CONTROL         "Progress13",IDC_PROGRESSVERT10,"msctls_progress32",
+                    WS_BORDER,208,39,9,98
+    LTEXT           "1",IDC_STATIC,57,142,8,8
+    LTEXT           "2",IDC_STATIC,74,142,8,8
+    LTEXT           "3",IDC_STATIC,91,142,8,8
+    LTEXT           "4",IDC_STATIC,108,142,8,8
+    LTEXT           "5",IDC_STATIC,125,142,8,8
+    LTEXT           "7",IDC_STATIC,159,142,8,8
+    LTEXT           "8",IDC_STATIC,176,142,8,8
+    LTEXT           "9",IDC_STATIC,193,142,8,8
+    LTEXT           "6",IDC_STATIC,142,142,8,8
+    CONTROL         "10",IDC_STATIC,"Static",SS_LEFTNOWORDWRAP | WS_GROUP,
+                    208,142,8,8
+    LTEXT           "Channel:",IDC_STATIC,15,142,29,8
+    LTEXT           "Inv:",IDC_STATICINV,15,26,13,8
+    LTEXT           "Exp:",IDC_STATIC,15,13,15,8
+    LTEXT           "On/Off:",IDC_STATIC,15,152,25,8
+    PUSHBUTTON      "",IDC_BUTTONCOLOR,7,172,12,12,BS_ICON | BS_LEFT | 
+                    BS_TOP
+END
+
+IDD_DIALOG3 DIALOGEX 0, 0, 257, 191
+STYLE DS_3DLOOK | DS_CONTROL | WS_CHILD
+EXSTYLE WS_EX_CONTROLPARENT
+FONT 8, "MS Sans Serif"
+BEGIN
+    COMBOBOX        IDC_COMBO1,71,14,48,134,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_COMBO2,71,31,48,134,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_COMBO3,71,48,48,134,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_COMBO4,71,65,48,134,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_COMBO5,71,82,48,134,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_COMBO6,71,99,48,134,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_COMBO7,71,116,48,134,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_COMBO8,71,133,48,134,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_COMBO9,71,150,48,134,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    COMBOBOX        IDC_COMBO10,71,167,48,134,CBS_DROPDOWNLIST | WS_VSCROLL | 
+                    WS_TABSTOP
+    CONTROL         "Slider1",IDC_SLIDER1,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,159,17,68,10
+    CONTROL         "Slider2",IDC_SLIDER2,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,159,34,68,10
+    CONTROL         "Slider3",IDC_SLIDER3,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,159,51,68,10
+    CONTROL         "Slider4",IDC_SLIDER4,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,159,68,68,10
+    CONTROL         "Slider5",IDC_SLIDER5,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,159,85,68,10
+    CONTROL         "Slider6",IDC_SLIDER6,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,159,102,68,10
+    CONTROL         "Slider7",IDC_SLIDER7,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,159,119,68,10
+    CONTROL         "Slider8",IDC_SLIDER8,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,159,136,68,10
+    CONTROL         "Slider9",IDC_SLIDER9,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,159,153,68,10
+    CONTROL         "Slider10",IDC_SLIDER10,"msctls_trackbar32",TBS_BOTH | 
+                    TBS_NOTICKS | WS_TABSTOP,159,170,68,10
+    GROUPBOX        "Mapping",IDC_STATIC,8,3,118,183
+    LTEXT           "Channel 1:",IDC_STATIC,23,17,35,8
+    LTEXT           "Channel 2:",IDC_STATIC,23,35,35,8
+    LTEXT           "Channel 3:",IDC_STATIC,23,52,35,8
+    LTEXT           "Channel 4:",IDC_STATIC,23,69,35,8
+    LTEXT           "Channel 5:",IDC_STATIC,23,86,35,8
+    LTEXT           "Channel 6:",IDC_STATIC,23,104,35,8
+    LTEXT           "Channel 7:",IDC_STATIC,23,120,35,8
+    LTEXT           "Channel 8:",IDC_STATIC,23,137,35,8
+    LTEXT           "Channel 9:",IDC_STATIC,23,154,35,8
+    LTEXT           "Channel 10:",IDC_STATIC,23,171,39,8
+    GROUPBOX        "Sensitivity",IDC_STATIC,137,3,113,183
+    PUSHBUTTON      "|",IDC_BUTTONCENTER,232,172,11,10,BS_CENTER
+    LTEXT           "50 %",IDC_STATICSENS1,189,9,23,8,NOT WS_VISIBLE
+    LTEXT           "50 %",IDC_STATICSENS2,189,26,23,8,NOT WS_VISIBLE
+    LTEXT           "50 %",IDC_STATICSENS3,189,43,23,8,NOT WS_VISIBLE
+    LTEXT           "Min.",IDC_STATIC,143,17,14,8
+    LTEXT           "Max.",IDC_STATIC,230,17,16,8
+    LTEXT           "50 %",IDC_STATICSENS4,189,60,23,8,NOT WS_VISIBLE
+    LTEXT           "50 %",IDC_STATICSENS5,189,77,23,8,NOT WS_VISIBLE
+    LTEXT           "50 %",IDC_STATICSENS6,189,94,23,8,NOT WS_VISIBLE
+    LTEXT           "50 %",IDC_STATICSENS7,189,111,23,8,NOT WS_VISIBLE
+    LTEXT           "50 %",IDC_STATICSENS8,189,128,23,8,NOT WS_VISIBLE
+    LTEXT           "50 %",IDC_STATICSENS9,189,145,23,8,NOT WS_VISIBLE
+    LTEXT           "50 %",IDC_STATICSENS10,189,162,23,8,NOT WS_VISIBLE
+    CONTROL         "%",IDC_CHECKPERCENT,"Button",BS_AUTOCHECKBOX | 
+                    BS_PUSHLIKE | WS_TABSTOP,232,158,11,10
+END
+
+IDD_DIALOG4 DIALOGEX 0, 0, 235, 156
+STYLE DS_3DLOOK | WS_CHILD
+EXSTYLE WS_EX_CONTROLPARENT
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    LTEXT           "TODO: layout property page 4",IDC_STATIC,73,74,96,8
+END
+
+IDD_DIALOG5 DIALOGEX 0, 0, 265, 190
+STYLE WS_CHILD
+EXSTYLE WS_EX_CONTROLPARENT
+FONT 8, "MS Sans Serif", 0, 0, 0x1
+BEGIN
+    PUSHBUTTON      "&Vertical",IDC_BUTTONVERTICAL,205,170,50,14
+    CONTROL         "Progress2",IDC_PROGRESSHORZ2,"msctls_progress32",
+                    WS_BORDER,65,25,120,9
+    CONTROL         "Progress3",IDC_PROGRESSHORZ3,"msctls_progress32",
+                    WS_BORDER,65,41,120,9
+    CONTROL         "Progress4",IDC_PROGRESSHORZ4,"msctls_progress32",
+                    WS_BORDER,65,57,120,9
+    CONTROL         "Progress5",IDC_PROGRESSHORZ5,"msctls_progress32",
+                    WS_BORDER,65,73,120,9
+    CONTROL         "Progress6",IDC_PROGRESSHORZ6,"msctls_progress32",
+                    WS_BORDER,65,89,120,9
+    CONTROL         "Progress7",IDC_PROGRESSHORZ7,"msctls_progress32",
+                    WS_BORDER,65,105,120,9
+    CONTROL         "Progress8",IDC_PROGRESSHORZ8,"msctls_progress32",
+                    WS_BORDER,65,121,120,9
+    CONTROL         "Progress9",IDC_PROGRESSHORZ9,"msctls_progress32",
+                    WS_BORDER,65,137,120,9
+    CONTROL         "Progress10",IDC_PROGRESSHORZ10,"msctls_progress32",
+                    WS_BORDER,65,153,120,9
+    LTEXT           "Channel 1:",IDC_STATICCH1,20,10,35,8
+    LTEXT           "Channel 2:",IDC_STATICCH2,20,26,35,8
+    LTEXT           "Channel 3:",IDC_STATICCH3,20,42,35,8
+    LTEXT           "Channel 4:",IDC_STATICCH4,20,58,35,8
+    LTEXT           "Channel 5:",IDC_STATICCH5,20,74,35,8
+    LTEXT           "Channel 6:",IDC_STATICCH6,20,90,35,8
+    LTEXT           "Channel 7:",IDC_STATICCH7,20,106,35,8
+    LTEXT           "Channel 8:",IDC_STATICCH8,20,122,35,8
+    LTEXT           "Channel 9:",IDC_STATICCH9,20,138,35,8
+    LTEXT           "Channel 10:",IDC_STATICCH10,20,154,39,8
+    LTEXT           "0.000 ms",IDC_STATIC1,192,10,36,8
+    LTEXT           "0.000 ms",IDC_STATIC2,192,26,36,8
+    LTEXT           "0.000 ms",IDC_STATIC3,192,42,36,8
+    LTEXT           "0.000 ms",IDC_STATIC4,192,58,36,8
+    LTEXT           "0.000 ms",IDC_STATIC5,192,74,36,8
+    LTEXT           "0.000 ms",IDC_STATIC6,192,90,36,8
+    LTEXT           "0.000 ms",IDC_STATIC7,192,106,36,8
+    LTEXT           "0.000 ms",IDC_STATIC8,192,122,36,8
+    LTEXT           "0.000 ms",IDC_STATIC9,192,138,36,8
+    LTEXT           "0.000 ms",IDC_STATIC10,192,154,36,8
+    CONTROL         "Progress1",IDC_PROGRESSHORZ1,"msctls_progress32",
+                    WS_BORDER,65,9,120,9
+    PUSHBUTTON      "",IDC_BUTTONCOLOR,7,172,12,12,BS_ICON | BS_LEFT | 
+                    BS_TOP
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// DESIGNINFO
+//
+
+#ifdef APSTUDIO_INVOKED
+GUIDELINES DESIGNINFO DISCARDABLE 
+BEGIN
+    IDD_ABOUT, DIALOG
+    BEGIN
+        LEFTMARGIN, 5
+        RIGHTMARGIN, 209
+        TOPMARGIN, 7
+    END
+
+    IDD_CONSOLE, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 337
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 216
+    END
+
+    IDD_DIALOG1, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 251
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 182
+    END
+
+    IDD_DIALOG2, DIALOG
+    BEGIN
+        LEFTMARGIN, 7
+        RIGHTMARGIN, 256
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 181
+    END
+
+    IDD_DIALOG5, DIALOG
+    BEGIN
+        LEFTMARGIN, 6
+        RIGHTMARGIN, 258
+        TOPMARGIN, 7
+        BOTTOMMARGIN, 184
+    END
+END
+#endif    // APSTUDIO_INVOKED
+
+
+#ifdef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// TEXTINCLUDE
+//
+
+1 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "resource.h\0"
+END
+
+2 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "#include ""afxres.h""\r\n"
+    "\0"
+END
+
+3 TEXTINCLUDE DISCARDABLE 
+BEGIN
+    "\r\n"
+    "\0"
+END
+
+#endif    // APSTUDIO_INVOKED
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Icon
+//
+
+// Icon with lowest ID value placed first to ensure application icon
+// remains consistent on all systems.
+IDI_ICON1               ICON    DISCARDABLE     "icon1.ico"
+IDI_ICON2               ICON    DISCARDABLE     "icon2.ico"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Bitmap
+//
+
+IDB_BITMAP1             BITMAP  DISCARDABLE     "bsc3.bmp"
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Dialog Info
+//
+
+IDD_DIALOG3 DLGINIT
+BEGIN
+    IDC_COMBO1, 0x403, 6, 0
+0x6950, 0x6374, 0x0068, 
+    IDC_COMBO1, 0x403, 5, 0
+0x6f52, 0x6c6c, "\000" 
+    IDC_COMBO1, 0x403, 5, 0
+0x694e, 0x6b63, "\000" 
+    IDC_COMBO1, 0x403, 5, 0
+0x6154, 0x6c69, "\000" 
+    IDC_COMBO1, 0x403, 9, 0
+0x6854, 0x6f72, 0x7474, 0x656c, "\000" 
+    0
+END
+
+
+/////////////////////////////////////////////////////////////////////////////
+//
+// Menu
+//
+
+IDR_MENU1 MENU DISCARDABLE 
+BEGIN
+    POPUP "PopUp"
+    BEGIN
+        MENUITEM "&Color",                      ID_POPUP_COLOR
+    END
+END
+
+#endif    // English (U.S.) resources
+/////////////////////////////////////////////////////////////////////////////
+
+
+
+#ifndef APSTUDIO_INVOKED
+/////////////////////////////////////////////////////////////////////////////
+//
+// Generated from the TEXTINCLUDE 3 resource.
+//
+
+
+/////////////////////////////////////////////////////////////////////////////
+#endif    // not APSTUDIO_INVOKED
+

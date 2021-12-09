@@ -1,0 +1,408 @@
+<html>
+<!-- PLOC = d.article.getdoc -->
+<!-- CID = 12029 -->
+<!-- CHAN_LOC = cat.comptech.soft.os -->
+<!-- GROUP = comp.os.ms-windows.programmer.vxd -->
+<!-- QUERY = interrupt -->
+<head>
+<title>Deja.com: measure time between interrupts</title>
+<style>
+<!--
+#blue 
+{ color: #6666cc; }
+#gray 
+{ color: #666677; }
+#green 
+{ color: #cccc66; }
+#grey 
+{ color: #666677; }
+#indigo 
+{ color: #003399; }
+#lilac 
+{ color: #ccccff; }
+#reallyred 
+{ color: #cc0000; }
+#red 
+{ color: #ff6600; }
+#white 
+{ color: #ffffff; }
+#yellow 
+{ color: #ffcc66; }
+.boldorange 
+{ color: #ff6600; font-family: geneva,arial; font-size: 18px; font-weight: bold; }
+.chicago 
+{ font-family: chicago,arial black,arial; font-size: 55em; letter-spacing: 0pt; }
+.courier 
+{ font-family: courier new,courier; font-size: 12px; letter-spacing: 0pt; }
+.large 
+{ font-family: geneva,arial; font-size: 11pt; letter-spacing: 1pt; }
+.med 
+{ font-family: geneva,arial; font-size: 9.25pt; letter-spacing: 0pt; }
+.menu 
+{ background-color: #cccc66; border-color: #000000; border-style: solid; border-width: 2px; color: #000000; font-family: geneva,arial; font-size: 11px; font-weight: normal; layer-background-color: #cccc66; padding: 0px; position: absolute; visibility: hidden; width: 165; }
+.size10 
+{ font-family: geneva,arial; font-size: .10pt; }
+.size12 
+{ font-family: geneva,arial; font-size: .12pt; }
+.size8 
+{ font-family: geneva,arial; font-size: .8pt; }
+.small 
+{ font-family: geneva,arial; font-size: 7.85pt; letter-spacing: 0pt; }
+.verdana 
+{ font-family: verdana,geneva,arial; font-size: 7pt; letter-spacing: 0pt; }
+.xlarge 
+{ font-family: geneva,arial; font-size: 18px; letter-spacing: 0pt; }
+.xxlarge 
+{ font-family: geneva,arial; font-size: 18pt; letter-spacing: 0pt; }
+A.DARK2 
+{ color: #ff6600; }
+A.DARK3 
+{ color: #ff3300; }
+A.LIGHT2 
+{ color: #ffcc66; }
+b.bold 
+{ color: #000000; font-family: geneva,arial; font-size: 9.25pt; font-weight: bold; letter-spacing: 0pt; }
+td 
+{ font-family: geneva,arial; font-size: 9.25pt; letter-spacing: 0pt; }
+td B 
+{ font-family: geneva,arial; font-size: 9.25pt; font-weight: bold; letter-spacing: 0pt; }
+-->
+</style>
+<script>
+<!--
+function goOpener(myLink,closeme,closeonly) {
+if (! (window.focus && window.opener))return true;
+window.opener.focus();
+if (! closeonly)window.opener.location.href=myLink.href;
+if (closeme)window.close();
+return false;
+} 
+function close_window(milliseconds) {
+setTimeout('self.close()',milliseconds);
+}
+function popup_1(url,width,height,scrollbars) {
+var urlpat = /^http:/;
+if (! urlpat.test(url)) {
+url = 'http://www.deja.com/[ST_rn=ps]/' + url;
+}
+width = width || 350;
+height = height || 480;
+scrollbars = scrollbars || 'no';
+var props = 'toolbar=no,location=no,status=no,scrollbars=' + scrollbars + ',menubar=no,resizable=yes,copyhistory=no,width=' + width + ',height=' + height;
+rateWin = window.open(url,'popup_1',props);
+window.name="mainWindow"; // this renames the "main" browser window
+rateWin.resizeTo(width,height); // this resizes the popup 
+rateWin.focus(); // this brings the popup to focus
+}
+function popup_ext(url,width,height,scrollbars) {
+width = width || 640;
+height = height || 480;
+scrollbars = scrollbars || 'no';
+var props = 'toolbar=no,location=no,status=no,scrollbars=' + scrollbars + ',menubar=no,resizable=yes,copyhistory=no,width=' + width + ',height=' + height;
+indrevWin = window.open(url,'popup_ext',props);
+window.name="mainWindow"; // this renames the "main" browser window
+indrevWin.focus(); // this brings the popup to focus
+}
+// -->
+</script>
+<meta name=keywords content="dejanews usenet newsgroup articles search query discussion">
+<base href="http://www.deja.com/[ST_rn=ps]/" name="main">
+</head>
+<body bgcolor=#ffffff text=#000000 link=#0000cc vlink=#663399 alink=#ff6600 >
+<!-- HEADER : begin -->
+<table border=0 cellpadding=0 cellspacing=0 width=100%>
+<tr bgcolor=#ffffff><td rowspan=2 align=left bgcolor=#6666cc valign=bottom width=135><a href="./"><img src="http://g.deja.com/gifs/dlogo_130_b.gif" width=130 height=75 alt="deja.com" border=0 hspace=0 align=left></a></td>
+<td width=12 rowspan=2><img src="http://g.deja.com/gifs/20x20.gif" width=12 border=0 height=60 align=left></td>
+<td rowspan=2 align=middle valign=top><A HREF="/jump/http://gp5.deja.com/gtc?id=1048745&dejahi=0&tm=962847893.395718&site=dn&forum=comp.os.ms-windows.programmer.vxd&keyword=interrupt&channel=comptech.soft.os&page=d.article.getdoc&slot=468x60.1&node=Operating%20Systems&cr=%7c%7cdn%7c%7c%7c%7c%7c%7c%7ccomptech.%7cd.%7c468x60.1%7c%7c%7c%7c%7c%7c%7c">
+<IMG ALIGN=MIDDLE HEIGHT=60 WIDTH=468 SRC="http://web2.deja.com/ads/28/3504799428-12011.gif" ALT="Please visit our sponsor" border=1></A><BR>
+</td>
+<td align=right valign=top width=100%>
+</td></tr>
+<tr bgcolor=#ffffff>
+<td align=right valign=bottom width=100%><A HREF="/jump/http://gp5.deja.com/gtc?id=1046588&dejahi=0&tm=962847893.406897&site=dn&forum=comp.os.ms-windows.programmer.vxd&keyword=interrupt&channel=comptech.soft.os&page=d.article.getdoc&slot=promo.1&node=Operating%20Systems&cr=%7c%7cdn%7c%7c%7c%7c%7c%7c%7c%7c%7cpromo.1%7c%7c%7c%7c%7c%7c%7c">
+<img hspace=0 vspace=15 ALIGN=MIDDLE HEIGHT=30 WIDTH=120 SRC="http://web2.deja.com/ads/16/2109710516-2842.gif" ALT="Download our wireless application" border=1></A><BR></td>
+</tr></table>
+<table border=0 cellpadding=0 cellspacing=0 width=100%>
+<tr><td bgcolor=#6666cc><img src="http://g.deja.com/gifs/dmotto_b.gif" width=338 alt="Before You Buy" border=0 height=21 hspace=0 align=left></td>
+<td valign=middle align=right bgcolor=#6666cc id=white>
+<b class=verdana><a href="help/help_art.epl"><font color=#ffffff>Help</font></a> &nbsp;|&nbsp; </b>
+<b class=verdana><a href="mailto.xp"><font color=#ffffff>Contact Us</font></a> &nbsp;|&nbsp; </b>
+<b class=verdana><a href="/my/pr.xp"><font color=#ffffff>My Deja</font></a></b>
+&nbsp;&nbsp;
+<br></td>
+</tr></table>
+<!-- HEADER : end -->
+<!-- nav_chan : begin -->
+<table bgcolor=#cccc66 border=0 cellpadding=0 cellspacing=0 width=100%>
+<tr><td width=1 bgcolor=#000000 rowspan=2><img src="http://g.deja.com/gifs/20x20.gif" width=1 height=1 hspace=0><br></td>
+<td valign=top width=760>
+<table border=0 cellspacing=0 cellpadding=2>
+<tr><td nowrap>&nbsp;<a href="./"><b>Home</b></a>&nbsp;<b>&gt;&gt;</b>&nbsp;<a href="usenet/"><b>Discussions</b></a>
+<b>&gt;&gt;</b>
+<a href="bg.xp?level=comp"><b>comp</b></a>
+<b class=large>.</b>
+<a href="bg.xp?level=comp.os"><b>os</b></a>
+<b class=large>.</b>
+<a href="bg.xp?level=comp.os.ms-windows"><b>ms-windows</b></a>
+<b class=large>.</b>
+<a href="bg.xp?level=comp.os.ms-windows.programmer"><b>programmer</b></a>
+<b class=large>.</b>
+<a href="bg.xp?level=comp.os.ms-windows.programmer.vxd"><b>vxd</b></a>
+</td></tr>
+<tr>
+<td bgcolor=ffffff nowrap>
+<b class="xxlarge" id="blue">&nbsp;&gt;&gt;&nbsp;</b>
+<b class="xxlarge">comp.os.ms-windows.programmer.vxd&nbsp;</b></td>
+</tr>
+</table>
+</td>
+<td valign=bottom align=right>
+<table border=0 cellspacing=0 cellpadding=0>
+<tr valign=bottom><form action="qs.xp" method=get>
+<td align=left nowrap><font color="#FF6600"><b class=verdana>DISCUSSIONS SEARCH</b></font><br></td>
+<td>&nbsp;</td>
+<td class=small><a href="home_ps.shtml">Power Search</a>&nbsp;</td>
+</tr><tr valign=bottom>
+	<td nowrap><input type="hidden" name="OP" value="dnquery.xp"><input type="hidden" name="ST" value="MS"><input type="hidden" name="DBS" value="2"><input type=text name=QRY size=15></td>
+	<td>&nbsp;</td>
+	<td nowrap><input type=image src="http://g.deja.com/gifs/button_search.gif" width=75 height=17 vspace=0 border=0>
+	<br></td></form></tr>
+</table>
+</td>
+<td bgcolor=#000000 width=4 rowspan=2><img src="http://g.deja.com/gifs/20x20.gif" width=4 height=4 hspace=0></td>
+</tr>
+<tr valign=middle><td colspan=2 class=small width=100%>
+&nbsp;
+</td></tr>
+<tr>
+<td bgcolor=#000000 colspan=4 valign=top width=100%>
+<img src="http://g.deja.com/gifs/20x20.gif" width=1 height=4></td>
+</tr>
+</table>	
+<!-- nav_chan : end -->
+<!-- content+ad silo : begin -->
+<table bgcolor=#ffffff border=0 cellpadding=0 cellspacing=0 width=100%>
+<tr>
+<td width=100%><img src="http://g.deja.com/gifs/20x20.gif" width=130 height=1 hspace=0></td>
+<td width=20><img src="http://g.deja.com/gifs/20x20.gif" width=20 height=1 hspace=0></td>
+<td width=2 rowspan=3 bgcolor=#000000><IMG src="http://g.deja.com/gifs/20x20.gif" width=2 height=1 hspace=0></td>
+<td width=137 bgcolor=#6666cc><img src="http://g.deja.com/gifs/20x20.gif" width=130 height=1 hspace=0></td>
+</tr>
+<tr valign=top>
+<td width=100% align=left valign=top>
+<!-- content : begin -->
+<table border=0 cellspacing=0 cellpadding=2 width=100%>
+<tr valign=top><td align=left colspan=2>
+<span class="small"><b class="small" id=red>&gt;&gt;</b> <A href="http://www.deja.com/[ST_rn=ps]/rn_print.xp?&days=60&ST=RN&group=comp.os.ms-windows.programmer.vxd&noreg=1">Forum</A>: <b class="small">comp.os.ms-windows.programmer.vxd</b></span><br>
+<span class="small"><b class="small" id=red>&gt;&gt;</b> 
+<A href="http://x57.deja.com/[ST_rn=ps]/viewthread.xp?AN=638410084&search=thread&svcclass=dnyr&ST=PS&CONTEXT=962847758.1453523090&HIT_CONTEXT=962847758.1453523090&HIT_NUM=11&recnum=%3c961848240.542650@elch.in-berlin.de%3e%231/1&group=comp.os.ms-windows.programmer.vxd&frpage=getdoc.xp&back=clarinet">Thread</A>: <b class="small">measure time between interrupts</b></span>
+<br><span class=xlarge><span id="red">&gt;&gt;</span> Message <SPAN id="red">12</span> of 649</span><br>
+</td>
+<td align=right nowrap class=small><a href="http://www.deja.com/[ST_rn=ps]/my/pr/thread_add.xp?AN=638410084&query=measure%20time%20between%20interrupts&forum=comp.os.ms-windows.programmer.vxd&return_to=http://x57.deja.com/%5bST_rn%3dps%5d/getdoc.xp%3fAN%3d638410084%26CONTEXT%3d962847758.1453523090%26hitnum%3d11"><img src="http://g.deja.com/my/gifs/can_MY_white.gif" border=0> <span class="small">Save this thread</span></a><br><br><a href="http://x57.deja.com/[ST_rn=ps]/dnquery.xp?search=next&DBS=1&LNG=ALL&IS=interrupt&svcclass=dnyr&ST=PS&offsets=&svcclass=dnyr&CONTEXT=962847758.1453523090">back to search results</a></td>
+</tr>
+<tr><td><img src="http://g.deja.com/gifs/20x20.gif" width=1 height=5></td></tr>
+<tr valign=top>
+<td>Subject:</td><td width=100%><b>measure time between interrupts</b></td>
+</tr>
+<tr valign=top><td>Date:</td><td>06/24/2000</td></tr>
+<tr valign=top><td>Author:</td>
+<td><b><a href="http://www.deja.com/[ST_rn=ps]/profile.xp?author=%22Peter%20Remmers%22%20%3cpitti@amendestr.in-berlin.de%3e&ST=PS">Peter Remmers</b></a>
+&lt;<A HREF="mailto:pitti@amendestr.in-berlin.de">pitti@amendestr.in-berlin.de</a>&gt;</td></tr>
+</table>
+<br>
+<table cellpadding=2 cellspacing=0 width=100% border=0>
+<tr align=right valign=bottom>
+<td align=left nowrap class=small>
+<a href="http://www.deja.com/[ST_rn=ps]/post.xp?NG=comp.os.ms-windows.programmer.vxd&SUB=Re:%20measure%20time%20between%20interrupts&REF=%3c961848240.542650@elch.in-berlin.de%3e&AN=638410084&go=00316f60f45d8524d1d573a51f4fe1546f40f3cf9b8c715f662109674a0c19c57d0b1ad68e689ca1ac3d464b89bf05873c3e41dae08e1602fa3d9213c5b2118f1b78dd75639e3b18caafe8b5bcbe254922292d780aacf6f40f1d94d10aa3a16ce0cc432397cdbea13958a705f7"><IMG src="http://g.deja.com/gifs/post_reply.gif" border=0 width=72 height=12 alt="post reply"></a>
+</td>
+<td align=right>
+<b>&lt;&lt;&nbsp;<a href="http://x57.deja.com/[ST_rn=ps]/getdoc.xp?AN=638687275.5&CONTEXT=962847758.1453523090&hitnum=10">previous in search</a></b>
+&nbsp;&#183;&nbsp;
+<b><a href="http://x57.deja.com/[ST_rn=ps]/getdoc.xp?AN=638017294&CONTEXT=962847758.1453523090&hitnum=12">next in search</a>&nbsp;&gt;&gt;</b>
+</td>
+</tr>
+</table>
+<table width=100% border=0 cellspacing=0 cellpadding=5>
+<tr>
+<td bgcolor=#eeeeee ><p>
+<p>
+Hello!<BR>&nbsp;<BR>My VxD has installed a hardware <B>interrupt</B> handler.<BR>Now it needs to measure the time between interrupts, i.e. from<BR>one <B>interrupt</B> to the next, at a resolution in the microseconds<BR>range. The average time between interrupts is about 1.5ms.<BR>&nbsp;<BR>Now I know that the services an <B>interrupt</B> handler is allowed to<BR>call is restricted.<BR>&nbsp;<BR>I know of three possibilities to measure the time:<BR>&nbsp;<BR>- use the rdtsc instruction. But since this is CPU clock dependant &nbsp; I would first have to measure how many CPU clocks are 1.5ms.<BR>&nbsp; Second, I don't know much about this instruction and where to fetch &nbsp; the ticks after calling the instruction.<BR>&nbsp; Third and most important, I cannot rely on this instruction,<BR>&nbsp; because the CPU may not support it.<BR>&nbsp;<BR>- use VTD_Get_Real_Time(). I don't know if an ISR is allowed to call &nbsp; this service. My book says no (Thielen&amp;Woodruff), at least it's &nbsp; not in the book's list of services an ISR is allowed to call.<BR>&nbsp;<BR>- read the system timer 0 with out 43h/in 40h/in 40h.<BR>&nbsp; This is the method I used in the DOS program I wrote.<BR>&nbsp; But I don't know if the timer is left at 18.2 Hz <B>interrupt</B> rate. &nbsp; If windows changed the timer not to count from 10000h to zero<BR>&nbsp; but instead from a much lower value (increasing IRQ0 <B>interrupt</B> &nbsp; rate), that may mean that I don't have enough time to stay<BR>&nbsp; within at most one counter wrap around.<BR>&nbsp; The times I may measure are in the range from 0.9ms to ~20ms.<BR>&nbsp;<BR>Tests show that VTD_Get_Real_Time() works. But I don't know if<BR>it does just work &quot;most of the time&quot;.<BR>What method do you recommend?<BR>&nbsp;<BR>The times I measure jitter alot. Under pure DOS I get values<BR>that jitter only about &lt; +/- 5µs which is near perfect.<BR>In my ISR the values jitter more than 10 times as much with<BR>occasional *giant* glitches.<BR>This is like running my DOS program in a DOS box.<BR>I thought that a hardware ISR in a VxD has minimum latency<BR>and I would get as perfect values as in pure DOS...<BR>&nbsp;<BR>I hoped that it would not be necessary to have a lot expenditure to iron out the timing glitches like the DIGIJOY sample from the DDK does (because I do the timing in an ISR and not with polling which may get interrupted).<BR>&nbsp;<BR>Peter<BR>
+</td></tr></table>
+<table cellpadding=2 cellspacing=0 width=100% border=0><tr align=right>
+<td align=left nowrap class=small>
+<a href="http://www.deja.com/[ST_rn=ps]/post.xp?NG=comp.os.ms-windows.programmer.vxd&SUB=Re:%20measure%20time%20between%20interrupts&REF=%3c961848240.542650@elch.in-berlin.de%3e&AN=638410084&go=00316f60f45d8524d1d573a51f4fe1546f40f3cf9b8c715f662109674a0c19c57d0b1ad68e689ca1ac3d464b89bf05873c3e41dae08e1602fa3d9213c5b2118f1b78dd75639e3b18caafe8b5bcbe254922292d780aacf6f40f1d94d10aa3a16ce0cc432397cdbea13958a705f7"><IMG src="http://g.deja.com/gifs/post_reply.gif" border=0 width=72 height=12 alt="post reply"></a>
+</td>
+<td align=right>
+<b>&lt;&lt;&nbsp;<a href="http://x57.deja.com/[ST_rn=ps]/getdoc.xp?AN=638687275.5&CONTEXT=962847758.1453523090&hitnum=10">previous in search</a></b>
+&nbsp;&#183;&nbsp;
+<b><a href="http://x57.deja.com/[ST_rn=ps]/getdoc.xp?AN=638017294&CONTEXT=962847758.1453523090&hitnum=12">next in search</a>&nbsp;&gt;&gt;</b>
+</td>
+</tr></table>
+<TABLE width=100% border=0 cellspacing=0 cellpadding=0>
+<TR><TD valign=top>
+<br><a href="http://www.deja.com/[ST_rn=ps]/my/pr/forum_add.xp?group=comp.os.ms-windows.programmer.vxd&go=http://x57.deja.com/%5bST_rn%3dps%5d/getdoc.xp%3fAN%3d638410084%26CONTEXT%3d962847758.1453523090%26hitnum%3d11">Subscribe</a> to <b class=small>comp.os.ms-windows.programmer.vxd</b></a>
+<br><a href="http://www.deja.com/[ST_rn=ps]/maf_enter.xp?SUB=measure%20time%20between%20interrupts&AN=638410084&DBS=1&continue=http://x57.deja.com/%5bST_rn%3dps%5d/getdoc.xp%3fAN%3d638410084%26CONTEXT%3d962847758.1453523090%26hitnum%3d11">Mail this message to a friend</a>
+<br><a href="http://www.deja.com/[ST_rn=ps]/getdoc.xp?AN=638410084&fmt=text">View original Usenet format</a>
+<br><a href="http://www.deja.com/[ST_rn=ps]/linkback.xp?act=f&res_type=message&res_title=measure%20time%20between%20interrupts&res_url=http://www.deja.com/%5bST_rn%3dps%5d/threadmsg_ct.xp%3fAN%3d638410084">Create a custom link to this message from your own Web site</a><br></td>
+</TR></TABLE>
+<!-- content : end -->
+<p>
+<!-- search again : begin -->
+<p>
+<table cellpadding=2 cellspacing=0 border=0 width=100% bgcolor=#cccc66>
+<form action="dnquery.xp">
+<tr>
+<input type=hidden name=ST value=QS><input type=hidden name=DBS value=2>
+<td bgcolor=#000000>
+<center><font color=#ff6600><b style="font-size:10pt;">Search Discussions</b></font></center></td>
+<td>
+<span class="small">&nbsp;
+For a more detailed search in Discussions go to 
+<a href="home_ps.shtml?QRY=interrupt&TAB=DS">Power Search</a>
+</span></font>
+</td></tr>
+<tr><td valign=top align=right><font size=2><b class="small">Search only in:</b></font></td>
+<td valign=top><span class="small">
+	<input type=radio name=groups value=comp.os.ms-windows.programmer.vxd checked> comp.os.ms-windows.programmer.vxd<br>
+	<input type=radio name=groups value="" > All Deja.com</span>
+</td></tr>
+<tr>
+<td valign=top align=right><font size=2><b class="small">Search for:</b></font></td>
+<td valign=top>
+<input type=text size=35 name=QRY value="interrupt">
+<input type=submit value="Search">
+<br><nobr><span class="small">Search&nbsp;
+<select name=svcclass>
+<option value=dncurrent >recent
+<option value=dnold >past
+<option value=dnserver >all
+</select>
+discussions
+</span></font></nobr>
+</td></tr>
+</form></table>
+<!-- search again : end -->
+<br>&nbsp;
+</td>
+<td></td>
+<td valign=top bgcolor=#6666cc width=137>
+<!-- ad silo : begin -->
+<table border=0 cellspacing=0 cellpadding=0><tr><td width=125 colspan=2>
+<form METHOD="get" ACTION="/jump/http://gp5.deja.com/gtf/id=1046888&dejafi=0&tm=962847893.321388&site=dn&forum=comp.os.ms-windows.programmer.vxd&keyword=interrupt&channel=comptech.soft.os&page=d.article.getdoc&slot=125x125.1&node=Operating%20Systems&cr=%7c%7cdn%7c%7c%7c%7c%7c%7c%7ccomptech.%7cd.%7c125x125.1%7c%7c%7c%7c%7c%7c%7c">
+<input type="hidden" name="aff_id" value="511279228609055">
+<img src="http://g.deja.com/ads/registrars_125x125getop.gif"></td>
+</tr><tr><td background="http://g.deja.com/ads/registrars_125x125getbg.gif" valign=top align=center width=125>
+<font face="arial" size="1"><table border=0 cellspacing=0 cellpadding=0>
+<tr><td background="http://g.deja.com/ads/registrars_125x125getgreen.gif">
+<span style="font-size:10px"><input type="text" name="AffiliateDomain" SIZE=8 maxlength=67></span>
+</td><td background="http://g.deja.com/ads/registrars_125x125getgreen.gif">
+<span style="font-size:10px"><input type="image" border=0 src="http://g.deja.com/ads/registrars_125x125getgo.gif" width=25 height=18 alt="Go!" value="Search"></span>
+</font>
+</td></tr></table>
+</td></tr><tr>
+<td width=125 colspan=2>
+<img src="http://g.deja.com/ads/registrars_125x125getbottom.gif"></td>
+</tr></form></table>
+<A HREF="/jump/http://gp5.deja.com/gtc?id=1047594&dejahi=0&tm=962847893.331213&site=dn&forum=comp.os.ms-windows.programmer.vxd&keyword=interrupt&channel=comptech.soft.os&page=d.article.getdoc&slot=125x125.2&node=Operating%20Systems&cr=%7c%7cdn%7c%7c%7c%7c%7c%7c%7ccomptech.%7cd.%7c125x125.2%7c%7c%7c%7c%7c%7c%7c">
+<img hspace=6 vspace=6 lowsrc="http://g.deja.com/gifs/20x20.gif" ALIGN=MIDDLE HEIGHT=125 WIDTH=125 SRC="http://web2.deja.com/ads/49/4093482049-13223.gif" ALT="NextCard Internet Visa - Apply Now" border=1></A><BR>
+<table width=100% border=0 cellspacing=0 cellpadding=6><tr>
+<td bgcolor="#000000"><font color="#ff6600"><b id=red>Explore More:</b></font></td>
+</tr></table>
+<table width=100% border=0 cellspacing=0 cellpadding=6>
+<tr><td bgcolor="#6666cc"><span class=small id=white>
+<font color="#ffffff">
+<p>Visit Saleshound.com and<br>
+<a href="/jump/http://gp5.deja.com/gtc?id=1049347&dejahi=0&tm=962847893.293518&site=dn&forum=comp.os.ms-windows.programmer.vxd&keyword=interrupt&channel=comptech.soft.os&page=d.article.getdoc&slot=expmore.1&node=Operating%20Systems&cr=%7c%7cdn%7c%7c%7c%7c%7c%7c%7ccomptech.%7cd.%7cexpmore.1%7c%7c%7c%7c%7c%7c%7c">
+<font color="#ffcc66"><b class=small id=yellow>Sniff out a deal near you</b></font></a>
+<p>Post your resume at the<br>
+<a href="/jump/http://gp5.deja.com/gtc?id=1024439&dejahi=0&tm=962847893.293518&site=dn&forum=comp.os.ms-windows.programmer.vxd&keyword=interrupt&channel=comptech.soft.os&page=d.article.getdoc&slot=expmore.1&node=Operating%20Systems&cr=%7c%7cdn%7c%7c%7c%7c%7c%7c%7ccomptech.%7cd.%7cexpmore.1%7c%7c%7c%7c%7c%7c%7c">
+<font color="#ffcc66"><b class=small id=yellow>Deja.com Career Center</b></font></a>
+<p>Find Company Information<br>
+<a href="/jump/http://gp5.deja.com/gtc?id=1041049&dejahi=0&tm=962847893.293518&site=dn&forum=comp.os.ms-windows.programmer.vxd&keyword=interrupt&channel=comptech.soft.os&page=d.article.getdoc&slot=expmore.1&node=Operating%20Systems&cr=%7c%7cdn%7c%7c%7c%7c%7c%7c%7ccomptech.%7cd.%7cexpmore.1%7c%7c%7c%7c%7c%7c%7c">
+<font color="#ffcc66"><b class=small id=yellow>At Hoover's Online</b></font></a>
+<p>Save Big on ELECTRONICS<br>
+<a href="/jump/http://gp5.deja.com/gtc?id=1049342&dejahi=0&tm=962847893.293518&site=dn&forum=comp.os.ms-windows.programmer.vxd&keyword=interrupt&channel=comptech.soft.os&page=d.article.getdoc&slot=expmore.1&node=Operating%20Systems&cr=%7c%7cdn%7c%7c%7c%7c%7c%7c%7ccomptech.%7cd.%7cexpmore.1%7c%7c%7c%7c%7c%7c%7c">
+<font color="#ffcc66"><b class=small id=yellow>Shop @ SUPREME VIDEO</b></font></a>
+<p>Save Big on ELECTRONICS<br>
+<a href="/jump/http://gp5.deja.com/gtc?id=1047159&dejahi=0&tm=962847893.293518&site=dn&forum=comp.os.ms-windows.programmer.vxd&keyword=interrupt&channel=comptech.soft.os&page=d.article.getdoc&slot=expmore.1&node=Operating%20Systems&cr=%7c%7cdn%7c%7c%7c%7c%7c%7c%7ccomptech.%7cd.%7cexpmore.1%7c%7c%7c%7c%7c%7c%7c">
+<font color="#ffcc66"><b class=small id=yellow>Shop @ SUPREME VIDEO</b></font></a>
+<p>Click here to go to<br>
+<a href="/jump/http://gp5.deja.com/gtc?id=1046735&dejahi=0&tm=962847893.293518&site=dn&forum=comp.os.ms-windows.programmer.vxd&keyword=interrupt&channel=comptech.soft.os&page=d.article.getdoc&slot=expmore.1&node=Operating%20Systems&cr=%7c%7cdn%7c%7c%7c%7c%7c%7c%7ccomptech.%7cd.%7cexpmore.1%7c%7c%7c%7c%7c%7c%7c">
+<font color="#ffcc66"><b class=small id=yellow>Toshiba.com now!</b></font></a>
+<p>Paging as low as $4.95<br>
+<a href="/jump/http://gp5.deja.com/gtc?id=1047394&dejahi=0&tm=962847893.293518&site=dn&forum=comp.os.ms-windows.programmer.vxd&keyword=interrupt&channel=comptech.soft.os&page=d.article.getdoc&slot=expmore.1&node=Operating%20Systems&cr=%7c%7cdn%7c%7c%7c%7c%7c%7c%7ccomptech.%7c%7cexpmore.1%7c%7c%7c%7c%7c%7c%7c">
+<font color="#ffcc66"><b class=small id=yellow>Airtouch Paging</b></font></a>
+<p>Shop Deja.com for<br>
+<a href="/jump/http://gp5.deja.com/gtc?id=1045204&dejahi=0&tm=962847893.293518&site=dn&forum=comp.os.ms-windows.programmer.vxd&keyword=interrupt&channel=comptech.soft.os&page=d.article.getdoc&slot=expmore.1&node=Operating%20Systems&cr=%7c%7cdn%7c%7c%7c%7c%7c%7c%7ccomptech.%7c%7cexpmore.1%7c%7c%7c%7c%7c%7c%7c">
+<font color="#ffcc66"><b class=small id=yellow>Computing products</b></font></a>
+<p>Thousands of Products<br>
+<a href="/jump/http://gp5.deja.com/gtc?id=1041189&dejahi=0&tm=962847893.293518&site=dn&forum=comp.os.ms-windows.programmer.vxd&keyword=interrupt&channel=comptech.soft.os&page=d.article.getdoc&slot=expmore.1&node=Operating%20Systems&cr=%7c%7cdn%7c%7c%7c%7c%7c%7c%7ccomptech.%7cd.%7cexpmore.1%7c%7c%7c%7c%7c%7c%7c">
+<font color="#ffcc66"><b class=small id=yellow>Buy at cost @ eCOST.com</b></font></a>
+<p>Join an email club<br>
+<a href="/jump/http://gp5.deja.com/gtc?id=1038548&dejahi=0&tm=962847893.293518&site=dn&forum=comp.os.ms-windows.programmer.vxd&keyword=interrupt&channel=comptech.soft.os&page=d.article.getdoc&slot=expmore.1&node=Operating%20Systems&cr=%7c%7cdn%7c%7c%7c%7c%7c%7c%7ccomptech.%7cd.%7cexpmore.1%7c%7c%7c%7c%7c%7c%7c">
+<font color="#ffcc66"><b class=small id=yellow>at theglobe.com</b></font></a>
+</span></td></tr>
+</table>
+<!-- ad silo : end -->
+</td>
+</tr></table>
+<!-- content+ad silo : end -->
+<!-- FOOTER : begin -->
+<table width=100% border=0 cellspacing=0 cellpadding=6><tr align=center>
+<td bgcolor=#000000 colspan=2>
+&nbsp;<a href="a_e.shtml"><font color=#ffffff><b class="med">Arts &amp; Entertainment</b></font></a>&nbsp;
+&nbsp;<a href="auto.shtml"><font color=#ffffff><b class="med">Automotive</b></font></a>&nbsp;
+&nbsp;<a href="computing.shtml"><font color=#ffffff><b class="med">Computing</b></font></a>&nbsp;
+&nbsp;<a href="c_e.shtml"><font color=#ffffff><b class="med">Consumer Electronics</b></font></a>&nbsp;
+&nbsp;<a href="health.shtml"><font color=#ffffff><b class="med">Health &amp; Fitness</b></font></a>&nbsp;<br>
+&nbsp;<a href="home.shtml"><font color=#ffffff><b class="med">Home &amp; Family</b></font></a>&nbsp;
+&nbsp;<a href="lifestyles.shtml"><font color=#ffffff><b class="med">Lifestyles</b></font></a>&nbsp;
+&nbsp;<a href="money.shtml"><font color=#ffffff><b class="med">Money</b></font></a>&nbsp;
+&nbsp;<a href="recreation.shtml"><font color=#ffffff><b class="med">Sports &amp; Recreation</b></font></a>&nbsp;
+&nbsp;<a href="travel.shtml"><font color=#ffffff><b class="med">Travel</b></font></a>&nbsp;
+</td>
+</tr>
+<!--LAND-O-LINKS-->
+<tr align=left> 
+<td>
+<table width=100% bgcolor=#ffffff cellpadding=10 cellspacing=0 border=0>
+<tr>
+<td colspan=2>
+<center>
+<span class="small">
+<nobr><a href="fl.xp/1047264">Wolf Camera</a></nobr> - 
+<nobr><a href="fl.xp/1036014">Free Stuff @ FreeShop</a></nobr> - 
+<nobr><a href="fl.xp/1046531">Deja e-centives</a></nobr> - 
+<nobr><a href="fl.xp/1047158">ELECTRONICS@SupremeVideo</a></nobr> - 
+<nobr><a href="fl.xp/1035972">TireRack.com</a></nobr> - 
+<nobr><a href="fl.xp/1047512">Cost+Pricing at eCOST.com</a></nobr> - 
+<nobr><a href="fl.xp/1040887">Search for Jobs! JobOptions</a></nobr> - 
+<nobr><a href="fl.xp/1047619">As Low as 2.9% Intro APR</a></nobr> - 
+<nobr><a href="fl.xp/1046307">Domain Registration</a></nobr> - 
+<nobr><a href="fl.xp/1046750">AUTOWEB</a></nobr> - 
+<nobr><a href="fl.xp/1047239">NEWcars@carOrder</a></nobr>
+</span>
+</center>
+</td>
+</tr>
+<tr>
+<td class="small">
+<p>
+<a href="http://www.deja.com/[ST_rn=ps]/info/policy.shtml#copyright">Copyright</a> &copy; 1995-2000 <a href="http://www.deja.com/[ST_rn=ps]/corp/">Deja.com, Inc.</a> All rights reserved.
+<br>
+<a href="info/trademarks.shtml">Trademarks</a> &#183; <a href="info/policy.shtml">Terms and Conditions of Use</a> &#183; <a href="info/privacy.shtml">Site Privacy Statement</a>.
+</td>
+<td align=right valign=bottom nowrap>
+<b><a href="corp/ad.shtml">Advertise With Us!</A> &nbsp;|&nbsp; 
+<a href="corp/">About Deja.com</a> &nbsp;|&nbsp;
+<a href="corp/hire.shtml">Careers @ Deja</a>
+</b>
+</td>
+</tr>
+</table>
+</td>
+</tr>
+</table>
+<!-- FOOTER : end -->
+</body>
+</html>

@@ -1,0 +1,81 @@
+Path: zonnet-reader-1!zonnet-feed!news-feed1.eu.concert.net!newsfeed.direct.ca!look.ca!logbridge.uoregon.edu!news-out.uswest.net!news.uswest.net.POSTED!not-for-mail
+From: Ron Bass <ron.bass@worldnet.att.net>
+Newsgroups: comp.os.ms-windows.programmer.vxd
+Subject: Re: Can I access global variables safely in ISR?
+Message-ID: <v5avkskidrrojn93q847ndbf4g4068kflv@4ax.com>
+References: <8in3jh$4al$1@news2.kornet.net>
+X-Newsreader: Forte Agent 1.8/32.548
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+Lines: 65
+Date: Tue, 20 Jun 2000 11:42:33 -0600
+NNTP-Posting-Host: 207.109.62.187
+X-Trace: news.uswest.net 961523043 207.109.62.187 (Tue, 20 Jun 2000 12:44:03 CDT)
+NNTP-Posting-Date: Tue, 20 Jun 2000 12:44:03 CDT
+Xref: zonnet-feed comp.os.ms-windows.programmer.vxd:3027
+
+On Tue, 20 Jun 2000 15:41:05 +0900, "zincle" <in@hi.com> wrote:
+
+>Does interrupt routine called in arbitrary thread context?
+
+Possibly in an indeterminate context.  At this time, only memory
+addresses in the system arena (above C0000000h) are valid.
+
+>
+>Then if I access global variables in ISR, what happens? (BOSD?)
+
+I have only a little to add to Walter's reply.  As he mentioned, as
+long as the global variable is allocated in locked memory in the
+system arena (above C0000000h) you should be safe to modify it from an
+ISR.
+
+The exception is if either (a) you have already re-enabled interrupts
+at the hardware and issued a VPICD_Phys_EOI, allowing new interrupts
+to occur during you ISR, or you also modify the global variable from
+the ISR for a different hardware interrupt.  Then you have to watch
+for race conditions.
+
+However, race conditions are far more likely to occur if the global
+variable is modified in non-ISR code.  It now becomes imperative to
+make sure that access to the global is performed in an "atomic"
+manner, so that the access can't be interrupted in the middle of it's
+progress.
+
+For example, consider the simple case where the ISR uses the global
+variable to keep count of how many times the interrupt has occurred
+since the results were last processed.  The user code will read the
+counter variable, do whatever processing is needed to handle the
+interrupts that have occurred, and then clear the global, to indicate
+that nothing remains to be done.
+
+The problem occurs if an interrupt occurs after the user code has read
+the global counter, but before it gets to clear it.  Any new
+increments in the counter will be cleared by the user code when the
+ISR returns without ever being noticed.
+
+You've two alternative ways to handle this situation:
+
+The better from my point of view is to use the intel primitive LOCK to
+ensure that a command such as XCHNG is performed in a way that the
+action can't be interrupted.  See the intel manuals for further
+information.  They are available in PDF format from www.intel.com.
+
+The less satisfactory is to simply turn off interrupts while you are
+accessing the global variable.  As a mater of course, I don't like to
+disable interrupts without a very good reason.  If you must do this,
+remember that you'll want to use the pushfd, cli,...,popfd combination
+to ensure that the interrupt flag is returned to its original value.
+
+Good Luck,
+  -Ron
+
+
+>
+>My device driver has to do quite a few of works in ISR. When interrupt
+>occurs, the driver reconfigure HW and start DMA which is supplied by master
+>PCI. Most of works that driver does are executed in ISR.
+>
+>At present, my driver works well even though I access global variables in
+>ISR. I want to make the driver more stable at any situation.
+>

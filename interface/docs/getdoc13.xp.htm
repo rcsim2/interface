@@ -1,0 +1,296 @@
+<html>
+<!-- PLOC = d.article.getdoc -->
+<!-- CID = 10260 -->
+<!-- CHAN_LOC = cat.comptech.devenv -->
+<!-- GROUP = microsoft.public.win32.programmer.kernel -->
+<head>
+<title>Deja.com: Re: VPICD_Phys_EOI(hIRQ) and/or VPICD_Physically_Unmask(hIRQ)?</title>
+<style>
+<!--
+#blue 
+{ color: #6666cc; }
+#gray 
+{ color: #666677; }
+#green 
+{ color: #cccc66; }
+#grey 
+{ color: #666677; }
+#indigo 
+{ color: #003399; }
+#lilac 
+{ color: #ccccff; }
+#reallyred 
+{ color: #cc0000; }
+#red 
+{ color: #ff6600; }
+#white 
+{ color: #ffffff; }
+#yellow 
+{ color: #ffcc66; }
+.boldorange 
+{ color: #ff6600; font-family: geneva,arial; font-size: 18px; font-weight: bold; }
+.chicago 
+{ font-family: chicago,arial black,arial; font-size: 55em; letter-spacing: 0pt; }
+.courier 
+{ font-family: courier new,courier; font-size: 12px; letter-spacing: 0pt; }
+.large 
+{ font-family: geneva,arial; font-size: 11pt; letter-spacing: 1pt; }
+.med 
+{ font-family: geneva,arial; font-size: 9.25pt; letter-spacing: 0pt; }
+.menu 
+{ background-color: #cccc66; border-color: #000000; border-style: solid; border-width: 2px; color: #000000; font-family: geneva,arial; font-size: 11px; font-weight: normal; layer-background-color: #cccc66; padding: 0px; position: absolute; visibility: hidden; width: 165; }
+.size10 
+{ font-family: geneva,arial; font-size: .10pt; }
+.size12 
+{ font-family: geneva,arial; font-size: .12pt; }
+.size8 
+{ font-family: geneva,arial; font-size: .8pt; }
+.small 
+{ font-family: geneva,arial; font-size: 7.85pt; letter-spacing: 0pt; }
+.verdana 
+{ font-family: verdana,geneva,arial; font-size: 7pt; letter-spacing: 0pt; }
+.xlarge 
+{ font-family: geneva,arial; font-size: 18px; letter-spacing: 0pt; }
+.xxlarge 
+{ font-family: geneva,arial; font-size: 18pt; letter-spacing: 0pt; }
+A.DARK2 
+{ color: #ff6600; }
+A.DARK3 
+{ color: #ff3300; }
+A.LIGHT2 
+{ color: #ffcc66; }
+b.bold 
+{ color: #000000; font-family: geneva,arial; font-size: 9.25pt; font-weight: bold; letter-spacing: 0pt; }
+td 
+{ font-family: geneva,arial; font-size: 9.25pt; letter-spacing: 0pt; }
+td B 
+{ font-family: geneva,arial; font-size: 9.25pt; font-weight: bold; letter-spacing: 0pt; }
+-->
+</style>
+<script>
+<!--
+function goOpener(myLink,closeme,closeonly) {
+if (! (window.focus && window.opener))return true;
+window.opener.focus();
+if (! closeonly)window.opener.location.href=myLink.href;
+if (closeme)window.close();
+return false;
+} 
+function close_window(milliseconds) {
+setTimeout('self.close()',milliseconds);
+}
+function popup_1(url,width,height,scrollbars) {
+var urlpat = /^http:/;
+if (! urlpat.test(url)) {
+url = 'http://www.deja.com/[ST_rn=ps]/' + url;
+}
+width = width || 350;
+height = height || 480;
+scrollbars = scrollbars || 'no';
+var props = 'toolbar=no,location=no,status=no,scrollbars=' + scrollbars + ',menubar=no,resizable=yes,copyhistory=no,width=' + width + ',height=' + height;
+rateWin = window.open(url,'popup_1',props);
+window.name="mainWindow"; // this renames the "main" browser window
+rateWin.resizeTo(width,height); // this resizes the popup 
+rateWin.focus(); // this brings the popup to focus
+}
+function popup_ext(url,width,height,scrollbars) {
+width = width || 640;
+height = height || 480;
+scrollbars = scrollbars || 'no';
+var props = 'toolbar=no,location=no,status=no,scrollbars=' + scrollbars + ',menubar=no,resizable=yes,copyhistory=no,width=' + width + ',height=' + height;
+indrevWin = window.open(url,'popup_ext',props);
+window.name="mainWindow"; // this renames the "main" browser window
+indrevWin.focus(); // this brings the popup to focus
+}
+// -->
+</script>
+<meta name=keywords content="dejanews usenet newsgroup articles search query discussion">
+<base href="http://www.deja.com/[ST_rn=ps]/" name="main">
+</head>
+<body bgcolor=#ffffff text=#000000 link=#0000cc vlink=#663399 alink=#ff6600 >
+<!-- HEADER : begin -->
+<table border=0 cellpadding=0 cellspacing=0 width=100%>
+<tr bgcolor=#ffffff><td rowspan=2 align=left bgcolor=#6666cc valign=bottom width=135><a href="./"><img src="http://g.deja.com/gifs/dlogo_130_b.gif" width=130 height=75 alt="deja.com" border=0 hspace=0 align=left></a></td>
+<td width=12 rowspan=2><img src="http://g.deja.com/gifs/20x20.gif" width=12 border=0 height=60 align=left></td>
+<td rowspan=2 align=middle valign=top><A HREF="/jump/http://gp5.deja.com/gtc?id=1048744&dejahi=0&tm=962852483.144666&site=dn&forum=microsoft.public.win32.programmer.kernel&channel=comptech.devenv&page=d.article.getdoc&slot=468x60.1&node=Development%20Environments&cr=%7c%7cdn%7c%7c%7c%7c%7c%7c%7ccomptech.%7cd.%7c468x60.1%7c%7c%7c%7c%7c%7c%7c">
+<IMG ALIGN=MIDDLE HEIGHT=60 WIDTH=468 SRC="http://web2.deja.com/ads/31/2830025031-11776.gif" ALT="Please visit our sponsor" border=1></A><BR>
+</td>
+<td align=right valign=top width=100%>
+</td></tr>
+<tr bgcolor=#ffffff>
+<td align=right valign=bottom width=100%><A HREF="/jump/http://gp5.deja.com/gtc?id=1046588&dejahi=0&tm=962852483.156040&site=dn&forum=microsoft.public.win32.programmer.kernel&channel=comptech.devenv&page=d.article.getdoc&slot=promo.1&node=Development%20Environments&cr=%7c%7cdn%7c%7c%7c%7c%7c%7c%7c%7c%7cpromo.1%7c%7c%7c%7c%7c%7c%7c">
+<img hspace=0 vspace=15 ALIGN=MIDDLE HEIGHT=30 WIDTH=120 SRC="http://web2.deja.com/ads/16/2109710516-2842.gif" ALT="Download our wireless application" border=1></A><BR></td>
+</tr></table>
+<table border=0 cellpadding=0 cellspacing=0 width=100%>
+<tr><td bgcolor=#6666cc><img src="http://g.deja.com/gifs/dmotto_b.gif" width=338 alt="Before You Buy" border=0 height=21 hspace=0 align=left></td>
+<td valign=middle align=right bgcolor=#6666cc id=white>
+<b class=verdana><a href="help/help_art.epl"><font color=#ffffff>Help</font></a> &nbsp;|&nbsp; </b>
+<b class=verdana><a href="mailto.xp"><font color=#ffffff>Contact Us</font></a> &nbsp;|&nbsp; </b>
+<b class=verdana><a href="/my/pr.xp"><font color=#ffffff>My Deja</font></a></b>
+&nbsp;&nbsp;
+<br></td>
+</tr></table>
+<!-- HEADER : end -->
+<!-- nav_chan : begin -->
+<table bgcolor=#cccc66 border=0 cellpadding=0 cellspacing=0 width=100%>
+<tr><td width=1 bgcolor=#000000 rowspan=2><img src="http://g.deja.com/gifs/20x20.gif" width=1 height=1 hspace=0><br></td>
+<td valign=top width=760>
+<table border=0 cellspacing=0 cellpadding=2>
+<tr><td nowrap>&nbsp;<a href="./"><b>Home</b></a>&nbsp;<b>&gt;&gt;</b>&nbsp;<a href="usenet/"><b>Discussions</b></a>
+<b>&gt;&gt;</b>
+<a href="bg.xp?level=microsoft"><b>microsoft</b></a>
+<b class=large>.</b>
+<a href="bg.xp?level=microsoft.public"><b>public</b></a>
+<b class=large>.</b>
+<a href="bg.xp?level=microsoft.public.win32"><b>win32</b></a>
+<b class=large>.</b>
+<a href="bg.xp?level=microsoft.public.win32.programmer"><b>programmer</b></a>
+<b class=large>.</b>
+<a href="bg.xp?level=microsoft.public.win32.programmer.kernel"><b>kernel</b></a>
+</td></tr>
+<tr>
+<td bgcolor=ffffff nowrap>
+<b class="xxlarge" id="blue">&nbsp;&gt;&gt;&nbsp;</b>
+<b class="xxlarge">microsoft.public.win32.programmer.kernel&nbsp;</b></td>
+</tr>
+</table>
+</td>
+<td valign=bottom align=right>
+<table border=0 cellspacing=0 cellpadding=0>
+<tr valign=bottom><form action="qs.xp" method=get>
+<td align=left nowrap><font color="#FF6600"><b class=verdana>DISCUSSIONS SEARCH</b></font><br></td>
+<td>&nbsp;</td>
+<td class=small><a href="home_ps.shtml">Power Search</a>&nbsp;</td>
+</tr><tr valign=bottom>
+	<td nowrap><input type="hidden" name="OP" value="dnquery.xp"><input type="hidden" name="ST" value="MS"><input type="hidden" name="DBS" value="2"><input type=text name=QRY size=15></td>
+	<td>&nbsp;</td>
+	<td nowrap><input type=image src="http://g.deja.com/gifs/button_search.gif" width=75 height=17 vspace=0 border=0>
+	<br></td></form></tr>
+</table>
+</td>
+<td bgcolor=#000000 width=4 rowspan=2><img src="http://g.deja.com/gifs/20x20.gif" width=4 height=4 hspace=0></td>
+</tr>
+<tr valign=middle><td colspan=2 class=small width=100%>
+&nbsp;
+</td></tr>
+<tr>
+<td bgcolor=#000000 colspan=4 valign=top width=100%>
+<img src="http://g.deja.com/gifs/20x20.gif" width=1 height=4></td>
+</tr>
+</table>	
+<!-- nav_chan : end -->
+<!-- content+ad silo : begin -->
+<table bgcolor=#ffffff border=0 cellpadding=0 cellspacing=0 width=100%>
+<tr>
+<td width=100%><img src="http://g.deja.com/gifs/20x20.gif" width=130 height=1 hspace=0></td>
+<td width=20><img src="http://g.deja.com/gifs/20x20.gif" width=20 height=1 hspace=0></td>
+<td width=2 rowspan=3 bgcolor=#000000><IMG src="http://g.deja.com/gifs/20x20.gif" width=2 height=1 hspace=0></td>
+<td width=137 bgcolor=#6666cc><img src="http://g.deja.com/gifs/20x20.gif" width=130 height=1 hspace=0></td>
+</tr>
+<tr valign=top>
+<td width=100% align=left valign=top>
+<!-- content : begin -->
+<table border=0 cellspacing=0 cellpadding=2 width=100%>
+<tr valign=top><td align=left colspan=2>
+<span class="small"><b class="small" id=red>&gt;&gt;</b> <A href="http://x70.deja.com/[ST_rn=ps]/dnquery.xp?search=next&DBS=1&LNG=ALL&IS=VPICD_Phys_EOI&svcclass=dnyr&ST=PS&offsets=db99p9%023%01db2000p5x%024%01db2000p1%022%01db99p10%024%01db2000p2%023%01db2000p3%022%01db2000p4%027&svcclass=dnyr&CONTEXT=962851659.1350369301">Forum</A>: <b class="small">microsoft.public.win32.programmer.kernel</b></span><br>
+<span class="small"><b class="small" id=red>&gt;&gt;</b> 
+<A href="http://x70.deja.com/[ST_rn=ps]/viewthread.xp?AN=556422119&search=thread&svcclass=dnyr&ST=PS&CONTEXT=962852359.1354039346&HIT_CONTEXT=962851659.1350369301&HIT_NUM=28&REDO=1&recnum=%3cs4ia6vmhqeg64@corp.supernews.com%3e%231/1&group=microsoft.public.win32.programmer.kernel&frpage=getdoc.xp&back=clarinet">Thread</A>: <b class="small">VPICD_Phys_EOI(hIRQ) and/or VPICD_Physically_Unmask(hIRQ)?</b></span>
+<br><span class=xlarge><span id="red">&gt;&gt;</span> Message <SPAN id="red">11</span> of 11</span><br>
+</td>
+<td align=right nowrap class=small><a href="http://www.deja.com/[ST_rn=ps]/my/pr/thread_add.xp?AN=556422119&query=VPICD_Phys_EOI(hIRQ)%20and/or%20VPICD_Physically_Unmask(hIRQ)%3f&forum=microsoft.public.win32.programmer.kernel&return_to=http://x70.deja.com/%5bST_rn%3dps%5d/getdoc.xp%3fAN%3d556422119%26search%3dthread%26CONTEXT%3d962852359.1354039346%26HIT_CONTEXT%3d962851659.1350369301%26HIT_NUM%3d28%26hitnum%3d10"><img src="http://g.deja.com/my/gifs/can_MY_white.gif" border=0> <span class="small">Save this thread</span></a><br><br><a href="http://x70.deja.com/[ST_rn=ps]/dnquery.xp?search=next&DBS=1&LNG=ALL&IS=VPICD_Phys_EOI&svcclass=dnyr&ST=PS&offsets=db99p9%023%01db2000p5x%024%01db2000p1%022%01db99p10%024%01db2000p2%023%01db2000p3%022%01db2000p4%027&svcclass=dnyr&CONTEXT=962851659.1350369301">back to search results</a></td>
+</tr>
+<tr><td><img src="http://g.deja.com/gifs/20x20.gif" width=1 height=5></td></tr>
+<tr valign=top>
+<td>Subject:</td><td width=100%><b>Re: VPICD_Phys_EOI(hIRQ) and/or VPICD_Physically_Unmask(hIRQ)?</b></td>
+</tr>
+<tr valign=top><td>Date:</td><td>12/03/1999</td></tr>
+<tr valign=top><td>Author:</td>
+<td><b><a href="http://www.deja.com/[ST_rn=ps]/profile.xp?author=Tim%20Roberts%20%3ctimr@probo.com%3e&ST=PS">Tim Roberts</b></a>
+&lt;<A HREF="mailto:timr@probo.com">timr@probo.com</a>&gt;</td></tr>
+</table>
+<br>
+<table cellpadding=2 cellspacing=0 width=100% border=0>
+<tr align=right valign=bottom>
+<td align=left nowrap class=small>
+</td>
+<td align=right>
+<b>&lt;&lt;&nbsp;<a href="http://x70.deja.com/[ST_rn=ps]/getdoc.xp?AN=556548600&search=thread&CONTEXT=962852359.1354039346&HIT_CONTEXT=962851659.1350369301&HIT_NUM=28&hitnum=9">previous in thread</a></b>
+&nbsp;&#183;&nbsp;
+<b id=gray>next&nbsp;&gt;&gt;</b>
+</td>
+</tr>
+</table>
+<table width=100% border=0 cellspacing=0 cellpadding=5>
+<tr>
+<td bgcolor=#eeeeee ><p>
+<p>
+<BR>
+<font color="#666600">&quot;Jim Walsh&quot; &lt;<A HREF="http://www.deja.com/[ST_rn=ps]/profile.xp?author=jimwalsh@fast.net&ST=PS">jimwalsh@fast.net</A>&gt; wrote:<BR></font>
+&nbsp;<BR>
+<font color="#666600">&gt;THE POOR DOCUMENTATION OF THE WIN95/98 DDK WILL BE THE LIFE OF ME!!!<BR>&gt;<BR>&gt;&lt;sorry for the outburst&gt;<BR>&gt;<BR>&gt;Could someone please explain in detail the difference between<BR>&gt;VPICD_Phys_EOI(hIRQ), and VPICD_Physically_Unmask(hIRQ).<BR></font>
+&nbsp;<BR>VPICD_Physically_Unmask allows interrupts to start happening.&nbsp; When an interrupt is masked, all interrupts for that IRQ are suppressed until it is unmasked.&nbsp; Unmask is typically done once during initialization.<BR>&nbsp;<BR>When an interrupt arrives, all further interrupts on that IRQ are suspended until the processor asserts that it has completed processing and is ready to handle another one.&nbsp; VPICD_Phys_EOI does that.<BR>&nbsp;<BR>Thus, Physically_Unmask is a global on/off switch for the IRQ.&nbsp; Phys_EOI is done at the end of EVERY interrupt you handle.<BR>&nbsp;<BR>
+<font color="#666600">&gt;P.S. Is the source for VPICD available anywhere?<BR></font>
+&nbsp;<BR>It used to be in the Windows 3.1 DDK.&nbsp; Have any old copies of MSDN? 
+<font face="courier" size=2>--<BR>- Tim Roberts, <A HREF="http://www.deja.com/[ST_rn=ps]/profile.xp?author=timr@probo.com&ST=PS">timr@probo.com</A><BR>&nbsp; Providenza &amp; Boekelheide, Inc.<BR></font>
+</td></tr></table>
+<table cellpadding=2 cellspacing=0 width=100% border=0><tr align=right>
+<td align=left nowrap class=small>
+</td>
+<td align=right>
+<b>&lt;&lt;&nbsp;<a href="http://x70.deja.com/[ST_rn=ps]/getdoc.xp?AN=556548600&search=thread&CONTEXT=962852359.1354039346&HIT_CONTEXT=962851659.1350369301&HIT_NUM=28&hitnum=9">previous in thread</a></b>
+&nbsp;&#183;&nbsp;
+<b id=gray>next&nbsp;&gt;&gt;</b>
+</td>
+</tr></table>
+<TABLE width=100% border=0 cellspacing=0 cellpadding=0>
+<TR><TD valign=top>
+<br><a href="http://www.deja.com/[ST_rn=ps]/my/pr/forum_add.xp?group=microsoft.public.win32.programmer.kernel&go=http://x70.deja.com/%5bST_rn%3dps%5d/getdoc.xp%3fAN%3d556422119%26search%3dthread%26CONTEXT%3d962852359.1354039346%26HIT_CONTEXT%3d962851659.1350369301%26HIT_NUM%3d28%26hitnum%3d10">Subscribe</a> to <b class=small>microsoft.public.win32.programmer.kernel</b></a>
+<br><a href="http://www.deja.com/[ST_rn=ps]/maf_enter.xp?SUB=Re:%20VPICD_Phys_EOI(hIRQ)%20and/or%20VPICD_Physically_Unmask(hIRQ)%3f&AN=556422119&DBS=&continue=http://x70.deja.com/%5bST_rn%3dps%5d/getdoc.xp%3fAN%3d556422119%26search%3dthread%26CONTEXT%3d962852359.1354039346%26HIT_CONTEXT%3d962851659.1350369301%26HIT_NUM%3d28%26hitnum%3d10">Mail this message to a friend</a>
+<br><a href="http://www.deja.com/[ST_rn=ps]/getdoc.xp?AN=556422119&fmt=text">View original Usenet format</a>
+<br><a href="http://www.deja.com/[ST_rn=ps]/linkback.xp?act=f&res_type=message&res_title=Re:%20VPICD_Phys_EOI(hIRQ)%20and/or%20VPICD_Physically_Unmask(hIRQ)%3f&res_url=http://www.deja.com/%5bST_rn%3dps%5d/threadmsg_ct.xp%3fAN%3d556422119">Create a custom link to this message from your own Web site</a><br></td>
+</TR></TABLE>
+<!-- content : end -->
+<p>
+<!-- search again : begin -->
+<p>
+<table cellpadding=2 cellspacing=0 border=0 width=100% bgcolor=#cccc66>
+<form action="dnquery.xp">
+<tr>
+<input type=hidden name=ST value=QS><input type=hidden name=DBS value=2>
+<td bgcolor=#000000>
+<center><font color=#ff6600><b style="font-size:10pt;">Search Discussions</b></font></center></td>
+<td>
+<span class="small">&nbsp;
+For a more detailed search in Discussions go to 
+<a href="home_ps.shtml">Power Search</a>
+</span></font>
+</td></tr>
+<tr><td valign=top align=right><font size=2><b class="small">Search only in:</b></font></td>
+<td valign=top><span class="small">
+	<input type=radio name=groups value=microsoft.public.win32.programmer.kernel checked> microsoft.public.win32.programmer.kernel<br>
+	<input type=radio name=groups value="" > All Deja.com</span>
+</td></tr>
+<tr>
+<td valign=top align=right><font size=2><b class="small">Search for:</b></font></td>
+<td valign=top>
+<input type=text size=35 name=QRY value="">
+<input type=submit value="Search">
+<br><nobr><span class="small">Search&nbsp;
+<select name=svcclass>
+<option value=dncurrent >recent
+<option value=dnold >past
+<option value=dnserver >all
+</select>
+discussions
+</span></font></nobr>
+</td></tr>
+</form></table>
+<!-- search again : end -->
+<br>&nbsp;
+</td>
+<td></td>
+<td valign=top bgcolor=#6666cc width=137>
+<!-- ad silo : begin -->
+<table width="125" border="0" cellpadding="0" cellspacing="0" bgcolor="#ffffff" height="125">
+<tr valign="top"> 
+<form action="/jump/http://gp5.deja.com/gtf/id=1038530&dejafi=0&tm=962852483.069210&site=dn&forum=microsoft.public.win32.programmer.kernel&channel=comptech.devenv&page=d.article.getdoc&slot=125x125.1&node=Development%20Environments&cr=%7c%7cdn%7c%7c%7c%7c%7c%7

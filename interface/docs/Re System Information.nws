@@ -1,0 +1,20 @@
+Path: zonnet-reader-1!zonnet-feed!news-feed1.eu.concert.net!newsfeed.cwix.com!howland.erols.net!peerfeed.news.psi.net!psinr!client!not-for-mail
+From: "JT" <deletexyzjtruscello@evi-inc.com>
+Subject: Re: System Information
+Newsgroups: comp.os.ms-windows.programmer.vxd
+References: <d1v65.9038$vJ6.264442@zonnet-reader-1> <962247631.844584@elch.in-berlin.de> <QhH65.9126$vJ6.266306@zonnet-reader-1>
+Organization: E.V.I., Inc.
+Message-ID: <01bfe1ed$d7b93080$6ab0db26@jim>
+X-Newsreader: Microsoft Internet News 4.70.1155
+Lines: 6
+Date: Thu, 29 Jun 2000 17:16:59 GMT
+NNTP-Posting-Host: 38.219.176.106
+X-Trace: client 962299019 38.219.176.106 (Thu, 29 Jun 2000 13:16:59 EDT)
+NNTP-Posting-Date: Thu, 29 Jun 2000 13:16:59 EDT
+Xref: zonnet-feed comp.os.ms-windows.programmer.vxd:3175
+
+They are 16-bit resources.  You have to use the 16-bit rc.exe to compile
+them and then use adrc2vxd.exe to add them to the VxD.
+
+Rik G. <rgosens@zonnet.nl> wrote in article <QhH65.9126$vJ6.266306@zonnet-reader-1>...
+> The info is in the vxd itself indeed. But how do I get it in?

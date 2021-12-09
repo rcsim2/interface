@@ -1,0 +1,41 @@
+From: "Geoff Chappell" <geoffch@no.junk.mail.please>
+Newsgroups: comp.os.ms-windows.programmer.vxd
+References: <961762300.74451@elch.in-berlin.de> <3953743D.20077A47@oneysoft.com>
+Subject: Re: opposite of VPICD_Virtualize_IRQ ?
+Lines: 24
+Organization: none, just embarrassing disorganisation
+X-Newsreader: Microsoft Outlook Express 4.72.3110.1
+X-MimeOLE: Produced By Microsoft MimeOLE V4.72.3110.3
+Message-ID: <%nL55.23553$N4.918767@ozemail.com.au>
+NNTP-Posting-Host: 1cust144.tnt3.bne1.da.uu.net
+X-Trace: ozemail.com.au 962036347 210.84.85.144 (Tue, 27 Jun 2000 02:19:07 EST)
+NNTP-Posting-Date: Tue, 27 Jun 2000 02:19:07 EST
+Distribution: world
+Date: Tue, 27 Jun 2000 02:15:12 +1000
+Path: zonnet-reader-1!zonnet-feed!news-feed1.eu.concert.net!newsfeed.direct.ca!look.ca!newsfeed.berkeley.edu!intgwpad.nntp.telstra.net!nsw.nnrp.telstra.net!news.interact.net.au!newshost.pcug.org.au!newsfeed.ozemail.com.au!ozemail.com.au!not-for-mail
+X-Received-Date: Tue, 27 Jun 2000 02:19:09 EST (news.interact.net.au)
+Xref: zonnet-feed comp.os.ms-windows.programmer.vxd:3090
+
+Walter Oney wrote in message <3953743D.20077A47@oneysoft.com>...
+>Just to clarify why it has this quaint name: VPICD thinks (and has since
+>3.0) that there's a 16-bit interrupt routine in some virtual machine
+>that handles your interrupt. When you call VPICD_Virtualize_IRQ, VPICD
+>thinks you want to control *which* VM gets the interrupt. (Your ISR does
+>nothing of the kind, of course, but that doesn't alter VPICD's
+>perception). So, when you're done "virtualizing" your device, you want
+>to restore the default behavior.
+
+Yes, the documentation and the naming is certainly historical, but why do
+you make it sound as if the implementation is still limited by the history?
+
+Since at least the Windows 3.0 version (which is the earliest I know of),
+the VPICD has been perfectly happy with hardware interrupts being handled
+entirely in ring 0.
+
+----
+Geoff Chappell
+Consulting Software Analyst
+
+email:  geoffch@ozemail.com.au
+web:   www.ozemail.com.au/~geoffch
+

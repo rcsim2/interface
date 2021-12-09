@@ -1,0 +1,37 @@
+Path: zonnet-reader-1!zonnet-feed!ams-newsfeed.speedport.net!newsfeed.speedport.net!bignews.mediaways.net!newsfeed00.sul.t-online.de!newsfeed01.sul.t-online.de!newsmm00.btx.dtag.de!t-online.de!news.t-online.com!not-for-mail
+From: "Thomas Mielke" <Thomas_Mielke@t-online.de>
+Newsgroups: comp.os.ms-windows.programmer.vxd
+Subject: problem unloading dynamic vxd
+Date: Sat, 3 Jun 2000 12:37:40 +0200
+Organization: T-Online
+Lines: 18
+Message-ID: <8han0m$cci$12$1@news.t-online.com>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 8bit
+X-Trace: news.t-online.com 960028502 12 12690 04141981545-0001 000603 10:35:02
+X-Complaints-To: abuse@t-online.de
+X-Sender: 04141981545-0001@t-dialin.net
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Newsreader: Microsoft Outlook Express 5.00.2314.1300
+X-MimeOLE: Produced By Microsoft MimeOLE V5.00.2314.1300
+Xref: zonnet-feed comp.os.ms-windows.programmer.vxd:2791
+
+I am writing a dynamic vxd.
+
+In the meantime of development it would be very handy, to have the vxd
+unloadable, to avoid thousands of reboots!!!
+
+I wrote an vxd-test-application, doing a "CreateFile with
+FILE_FLAG_DELETE_ON_CLOSE".
+Then there are some "DeviceIo's" for communication.
+At least the application does a "CloseHandle", but the vxd stays resident,
+as the systeminformation-program indicates!
+
+I made tests with "DeleteFile" after the CloseHandle, it returns success,
+but no unloading of the vxd also!
+
+BTW: I have win98 FirstEdition with current updates.
+
+

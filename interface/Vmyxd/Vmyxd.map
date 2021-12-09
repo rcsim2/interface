@@ -1,0 +1,30 @@
+ VMYXD
+
+ Timestamp is 3a8d4aca (Fri Feb 16 16:44:10 2001)
+
+ Preferred load address is 00400000
+
+ Start         Length     Name                   Class
+ 0001:00000000 000002d9H _LDATA                  CODE
+ 0001:000002dc 00000369H _LTEXT                  CODE
+ 0002:00000000 00000020H _IDATA                  CODE
+ 0002:00000020 0000006eH _ITEXT                  CODE
+
+  Address         Publics by Value              Rva+Base     Lib:Object
+
+ 0001:00000000       VMYXD_DDB                  00401000     Vmyxd.obj
+ 0001:000002dc       VMYXD_Control              004012dc f   Vmyxd.obj
+ 0001:0000037a       VMYXD_Sys_Dynamic_Device_Exit 0040137a f   Vmyxd.obj
+ 0001:000003b7       VMYXD_W32_DeviceIoControl  004013b7 f   Vmyxd.obj
+ 0001:000004b2       VMYXD_Hw_Int               004014b2 f   Vmyxd.obj
+ 0001:00000621       VMYXD_EOI                  00401621 f   Vmyxd.obj
+ 0001:0000063e       VMYXD_API_Proc             0040163e f   Vmyxd.obj
+ 0002:00000020       VMYXD_Sys_Critical_Init    00401820 f   Vmyxd.obj
+ 0002:00000022       VMYXD_Device_Init          00401822 f   Vmyxd.obj
+ 0002:00000024       VMYXD_Init_Complete        00401824 f   Vmyxd.obj
+ 0002:00000026       VMYXD_Sys_Dynamic_Device_Init 00401826 f   Vmyxd.obj
+
+ entry point at        0000:00000000
+
+ Static symbols
+

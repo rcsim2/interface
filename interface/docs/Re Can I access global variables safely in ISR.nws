@@ -1,0 +1,39 @@
+Path: zonnet-reader-1!zonnet-feed!ams-newsfeed.speedport.net!newsfeed.speedport.net!news-spur1.maxwell.syr.edu!news.maxwell.syr.edu!feed1.news.rcn.net!rcn!not-for-mail
+From: Walter Oney <waltoney@oneysoft.com>
+Newsgroups: comp.os.ms-windows.programmer.vxd
+Subject: Re: Can I access global variables safely in ISR?
+Date: Tue, 20 Jun 2000 06:37:02 -0400
+Organization: Walter Oney Software
+Lines: 20
+Message-ID: <394F494E.8CBB9F90@oneysoft.com>
+References: <8in3jh$4al$1@news2.kornet.net>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Trace: okSP1QyO6Z6wNf5giHvPPHnsW0RXMSesP0V89l6TNas=
+X-Complaints-To: abuse@rcn.com
+NNTP-Posting-Date: 20 Jun 2000 10:37:49 GMT
+X-Accept-Language:  en
+X-Mailer:  Mozilla 4.7 [en] (Win98; I)
+Xref: zonnet-feed comp.os.ms-windows.programmer.vxd:3022
+
+zincle wrote:
+> Does interrupt routine called in arbitrary thread context?
+
+Yes, but I don't think that's relevant to your question
+
+> Then if I access global variables in ISR, what happens? (BOSD?)
+
+Nothing special -- there is only one copy of the global variables for a
+VxD. In other words, it's *not* like a ring-3 DLL where each process
+(usually) has a unique copy of the writable data.
+
+However, you *do* have to worry about which segment of the executable
+you put your data into. The ISR is not allowed to cause any page faults,
+which means that you should position the data in the VxD_LOCKED_DATA_SEG
+segment. (That's the default for data defined in a C program, by the
+way).
+
+--
+Walter Oney
+http://www.oneysoft.com

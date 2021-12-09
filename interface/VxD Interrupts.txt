@@ -1,0 +1,24 @@
+How do I handle interrupts in my VxD?
+   Use the services provided by the Virtual PIC Device (VPICD) to install an
+   ISR for your hardware device. This involves creating a data structure in
+   the locked data segment of your VxD of type VPICD_IRQ_Descriptor. In it,
+   you specify the IRQ number and the address of your ISR, among other
+   things. You then register your ISR by calling VPICD_Virtualize_IRQ. This
+   returns an IRQ Handle, which you should save for future reference.
+   Later, when an interrupt occurs, your ISR will be entered with minimal
+   latency. The ISR must be in a locked code segment. The IRQ Handle that
+   uniquely identifies this interrupt will be in EAX upon entry. You should
+   call VPICD_Phys_EOI at the end of your ISR. Just before returning from
+   your ISR, clear the carry flag if you successfully processed the
+   interrupt.
+   If the IRQ is sharable, you can pass the IRQ on to the next handler in the
+   chain by setting the carry flag. Return from the ISR with a RET
+   instruction, not IRET.
+   Upon entry to the VID_Hw_Int_Proc (your ISR), interrupts are masked at the
+   PIC for that particular interrupt, and an EOI has already been sent to the
+   PIC for that same interrupt. The call to VPICD_Phys_EOI at the end of the
+   ISR doesn't actually send an EOI to the physical PIC, as the name implies,
+   but rather simply unmasks the interrupt at the PIC. The EOI was actually
+   sent to the PIC before entering VID_Hw_Int_Proc. The name of the
+   VPICD_Phys_EOI service is misleading.
+   Check out the useful services provided by VPICD.

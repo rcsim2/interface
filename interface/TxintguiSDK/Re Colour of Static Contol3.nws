@@ -1,0 +1,57 @@
+Path: zonnet-reader-1!zonnet-feed!ams-newsfeed.speedport.net!newsfeed.speedport.net!newsfeeds.belnet.be!news.belnet.be!skynet.be!tank.news.pipex.net!pipex!warm.news.pipex.net!pipex!camcon.co.uk!not-for-mail
+From: Tilda <Tilda@spammenot.indigo8.freeserve.co.uk>
+Newsgroups: comp.os.ms-windows.programmer.win32
+Subject: Re: Colour of Static Contol
+Date: Sat, 15 Jul 2000 09:12:01 +0100
+Organization: Usually Lacking
+Lines: 40
+Message-ID: <39701CD1.530F027C@spammenot.indigo8.freeserve.co.uk>
+References: <bJTb5.1774$_C4.50810@zonnet-reader-1>
+NNTP-Posting-Host: 193.35.221.168
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Mailer: Mozilla 4.73 [en] (WinNT; U)
+X-Accept-Language: en
+Xref: zonnet-feed comp.os.ms-windows.programmer.win32:20461
+
+
+"Rik G." wrote:
+> 
+> Yes I know: it's a FAQ, but I've only seen sucky answers.
+>
+Chaucer sucks.
+
+
+>
+> So why can't I change the colour of a static control's text by doing this:
+> 
+> SetTextColor( GetDC(GetDlgItem(hDlgWnd,IDC_STATIC)), RGB(255,0,0));
+> 
+
+This sets the colour of text in _a_ DC associated with the window.  Not
+necessarily _the_ DC used by the static control to draw itself.  It also
+leaks a DC but that's another matter.
+
+Painting is a classic case of "do it when windows tells you to and with
+the tools windows gives you".
+
+The windowing system will tell you when to paint your window (yes; a static
+control _is_ a window) and handily pass you (a handle to) a DC when it's
+your turn to do something.  This happens by windows calling your WndProc
+with a WM_PAINT message.
+
+In the case of dialog controls it's a little more complicated since you
+don't have direct access to their WndProc()s.  Controls are nice kids
+though and generally have a habit of asking their parents what to do.
+
+You (as a responsible parent) will tell them,  by answering their questions
+
+The questions you should be answering are the WM_CTLCOLOR* messages they
+keep sending you.  Go read up on them.
+
+
+HTH and isn't too 'sucky'
+
+
+T

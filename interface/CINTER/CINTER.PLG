@@ -1,0 +1,91 @@
+--------------------Configuration: cinter - Win32 Release--------------------
+Begining build with project "F:\interface\cinter\cinter.dsp", at root.
+Active configuration is Win32 (x86) Console Application (based on Win32 (x86) Console Application)
+
+Project's tools are:
+			"32-bit C/C++ Compiler for 80x86" with flags "/nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/cinter.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c "
+			"Win32 Resource Compiler" with flags "/l 0x409 /d "NDEBUG" "
+			"Browser Database Maker" with flags "/nologo /o"Release/cinter.bsc" "
+			"COFF Linker for 80x86" with flags "kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/cinter.pdb" /machine:I386 /out:"Release/cinter.exe" "
+			"Custom Build" with flags ""
+			"<Component 0xa>" with flags ""
+
+Creating temp file "C:\WINDOWS\TEMP\RSP7264.TMP" with contents </nologo /ML /W3 /GX /O2 /D "WIN32" /D "NDEBUG" /D "_CONSOLE" /D "_MBCS" /Fp"Release/cinter.pch" /YX /Fo"Release/" /Fd"Release/" /FD /c 
+"F:\interface\cinter\cinter.cpp"
+>
+Creating command line "cl.exe @C:\WINDOWS\TEMP\RSP7264.TMP" 
+Creating temp file "C:\WINDOWS\TEMP\RSP7265.TMP" with contents <kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /nologo /subsystem:console /incremental:no /pdb:"Release/cinter.pdb" /machine:I386 /out:"Release/cinter.exe" 
+.\Release\cinter.obj>
+Creating command line "link.exe @C:\WINDOWS\TEMP\RSP7265.TMP" 
+Compiling...
+cinter.cpp
+F:\interface\cinter\cinter.cpp(22) : error C2065: 'oldhandler' : undeclared identifier
+F:\interface\cinter\cinter.cpp(22) : error C2100: illegal indirection
+F:\interface\cinter\cinter.cpp(22) : error C2501: 'interrupt' : missing decl-specifiers
+F:\interface\cinter\cinter.cpp(22) : error C2143: syntax error : missing ';' before '('
+F:\interface\cinter\cinter.cpp(22) : error C2059: syntax error : ')'
+F:\interface\cinter\cinter.cpp(22) : error C2059: syntax error : ';'
+F:\interface\cinter\cinter.cpp(24) : error C2182: 'interrupt' : illegal use of type 'void'
+F:\interface\cinter\cinter.cpp(24) : error C2086: 'interrupt' : redefinition
+F:\interface\cinter\cinter.cpp(24) : error C2239: unexpected token 'identifier' following declaration of 'interrupt'
+F:\interface\cinter\cinter.cpp(24) : error C2061: syntax error : identifier 'parisr'
+F:\interface\cinter\cinter.cpp(27) : error C2501: 'outportb' : missing decl-specifiers
+F:\interface\cinter\cinter.cpp(27) : error C2078: too many initializers
+F:\interface\cinter\cinter.cpp(28) : error C2143: syntax error : missing ';' before '}'
+F:\interface\cinter\cinter.cpp(38) : error C2143: syntax error : missing ';' before 'if'
+F:\interface\cinter\cinter.cpp(40) : error C2501: 'picaddr' : missing decl-specifiers
+F:\interface\cinter\cinter.cpp(40) : error C2086: 'picaddr' : redefinition
+F:\interface\cinter\cinter.cpp(41) : error C2501: 'picmask' : missing decl-specifiers
+F:\interface\cinter\cinter.cpp(41) : error C2086: 'picmask' : redefinition
+F:\interface\cinter\cinter.cpp(42) : error C2501: 'picmask' : missing decl-specifiers
+F:\interface\cinter\cinter.cpp(42) : error C2086: 'picmask' : redefinition
+F:\interface\cinter\cinter.cpp(43) : error C2143: syntax error : missing ';' before '}'
+F:\interface\cinter\cinter.cpp(46) : error C2501: 'picaddr' : missing decl-specifiers
+F:\interface\cinter\cinter.cpp(46) : error C2086: 'picaddr' : redefinition
+F:\interface\cinter\cinter.cpp(47) : error C2501: 'picmask' : missing decl-specifiers
+F:\interface\cinter\cinter.cpp(47) : error C2086: 'picmask' : redefinition
+F:\interface\cinter\cinter.cpp(48) : error C2501: 'picmask' : missing decl-specifiers
+F:\interface\cinter\cinter.cpp(48) : error C2086: 'picmask' : redefinition
+F:\interface\cinter\cinter.cpp(49) : error C2143: syntax error : missing ';' before '}'
+F:\interface\cinter\cinter.cpp(54) : error C2143: syntax error : missing ';' before '}'
+F:\interface\cinter\cinter.cpp(57) : error C2501: 'outportb' : missing decl-specifiers
+F:\interface\cinter\cinter.cpp(57) : error C2374: 'outportb' : redefinition; multiple initialization
+F:\interface\cinter\cinter.cpp(58) : error C2501: 'oldhandler' : missing decl-specifiers
+F:\interface\cinter\cinter.cpp(58) : error C2065: 'getvect' : undeclared identifier
+F:\interface\cinter\cinter.cpp(59) : error C2065: 'parisr' : undeclared identifier
+F:\interface\cinter\cinter.cpp(59) : error C2501: 'setvect' : missing decl-specifiers
+F:\interface\cinter\cinter.cpp(59) : error C2078: too many initializers
+F:\interface\cinter\cinter.cpp(60) : error C2065: 'inportb' : undeclared identifier
+F:\interface\cinter\cinter.cpp(60) : error C2501: 'outportb' : missing decl-specifiers
+F:\interface\cinter\cinter.cpp(60) : error C2374: 'outportb' : redefinition; multiple initialization
+F:\interface\cinter\cinter.cpp(61) : error C2501: 'outportb' : missing decl-specifiers
+F:\interface\cinter\cinter.cpp(61) : error C2374: 'outportb' : redefinition; multiple initialization
+F:\interface\cinter\cinter.cpp(64) : error C2501: 'printf' : missing decl-specifiers
+F:\interface\cinter\cinter.cpp(64) : error C2440: 'initializing' : cannot convert from 'char [41]' to 'int'
+                                                  This conversion requires a reinterpret_cast, a C-style cast or function-style cast
+F:\interface\cinter\cinter.cpp(65) : error C2501: 'printf' : missing decl-specifiers
+F:\interface\cinter\cinter.cpp(65) : error C2374: 'printf' : redefinition; multiple initialization
+F:\interface\cinter\cinter.cpp(66) : error C2501: 'interflag' : missing decl-specifiers
+F:\interface\cinter\cinter.cpp(66) : error C2086: 'interflag' : redefinition
+F:\interface\cinter\cinter.cpp(67) : error C2501: 'delay' : missing decl-specifiers
+F:\interface\cinter\cinter.cpp(68) : error C2501: 'outportb' : missing decl-specifiers
+F:\interface\cinter\cinter.cpp(68) : error C2374: 'outportb' : redefinition; multiple initialization
+F:\interface\cinter\cinter.cpp(69) : error C2501: 'delay' : missing decl-specifiers
+F:\interface\cinter\cinter.cpp(69) : error C2374: 'delay' : redefinition; multiple initialization
+F:\interface\cinter\cinter.cpp(70) : error C2143: syntax error : missing ';' before 'if'
+F:\interface\cinter\cinter.cpp(71) : error C2143: syntax error : missing ';' before 'else'
+F:\interface\cinter\cinter.cpp(74) : error C2501: 'delay' : missing decl-specifiers
+F:\interface\cinter\cinter.cpp(74) : error C2374: 'delay' : redefinition; multiple initialization
+F:\interface\cinter\cinter.cpp(75) : error C2143: syntax error : missing ';' before 'if'
+F:\interface\cinter\cinter.cpp(76) : error C2143: syntax error : missing ';' before 'else'
+F:\interface\cinter\cinter.cpp(77) : error C2143: syntax error : missing ';' before '}'
+F:\interface\cinter\cinter.cpp(80) : error C2501: 'outportb' : missing decl-specifiers
+F:\interface\cinter\cinter.cpp(80) : error C2374: 'outportb' : redefinition; multiple initialization
+F:\interface\cinter\cinter.cpp(81) : error C2501: 'setvect' : missing decl-specifiers
+F:\interface\cinter\cinter.cpp(81) : error C2086: 'setvect' : redefinition
+F:\interface\cinter\cinter.cpp(82) : error C2143: syntax error : missing ';' before '}'
+Error executing cl.exe.
+
+
+
+cinter.exe - 64 error(s), 0 warning(s)

@@ -1,0 +1,27 @@
+// get keydown messages in dialog
+BOOL CHelloApp::ProcessMessageFilter(int code, LPMSG lpMsg)
+{
+	// Check to make sure dialog is up
+	if (m_hwndDialog != NULL) {
+		if ((lpMsg->hwnd == m_hwndDialog) || ::IsChild(m_hwndDialog, lpMsg->hwnd)) {
+			// Use ::IsChild to get messages that may be going
+			// to the dialog's controls.  In the case of
+			// WM_KEYDOWN this is required.
+			if (lpMsg->message == WM_KEYDOWN) {
+				//TRACE("Got WM_KEYDOWN\n");
+				//MessageBox(m_hwndDialog,"KEY","key",MB_OK);
+				if (lpMsg->wParam == (WPARAM)VkKeyScan('s')) {
+					lpMsg->wParam = 0; //get rid of that fuckin' beep
+					//MessageBox(m_hwndDialog,"Start!","sss",MB_OK);
+					EndDialog(m_hwndDialog,0);
+				} else
+				if (lpMsg->wParam == VK_ESCAPE) {
+					//MessageBox(m_hwndDialog,"Exit!","Esc",MB_OK);
+					PostQuitMessage(0);
+				}
+			}
+		}
+	}
+	// Default processing of the message.
+	return CWinApp::ProcessMessageFilter(code, lpMsg);
+}

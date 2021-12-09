@@ -1,0 +1,12 @@
+
+ Start  Stop   Length Name                   Class
+ 00000H 0005FH 00060H STDDATA                SLDATA
+ 00060H 009E8H 00989H STDLIB                 SLCODE
+ 009F0H 03F75H 03586H CSEG                   CODE
+ 03F80H 05F7FH 02000H SSEG                   STACK
+ 05F80H 05F9FH 00020H ZZZZZZSEG              ZZZZZZ
+
+ Origin   Group
+ 0000:0   STDGRP
+
+Program entry point at 009F:03B6

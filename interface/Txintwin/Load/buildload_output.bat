@@ -1,0 +1,2 @@
+C:\PROGRA~1\DEVSTU~1\VC\BIN\cl /IC:\PROGRA~1\DEVSTU~1\VC\INCLUDE -DWIN32 -DCON -Di386 -D_X86_ -D_NTWIN -W3 -Gs -D_DEBUG -Zi -c load.c > output.txt
+C:\PROGRA~1\DEVSTU~1\VC\BIN\link /LIBPATH:C:\PROGRA~1\DEVSTU~1\VC\LIB -machine:i386 -debug:notmapped,full -debugtype:cv -subsystem:console kernel32.lib -PDB:NONE load.obj >> output.txt

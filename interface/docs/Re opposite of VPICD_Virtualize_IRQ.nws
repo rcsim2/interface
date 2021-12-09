@@ -1,0 +1,36 @@
+Path: zonnet-reader-1!zonnet-feed!ams-newsfeed.speedport.net!newsfeed.speedport.net!colt.net!news.maxwell.syr.edu!feed1.news.rcn.net!rcn!not-for-mail
+From: Walter Oney <waltoney@oneysoft.com>
+Newsgroups: comp.os.ms-windows.programmer.vxd
+Subject: Re: opposite of VPICD_Virtualize_IRQ ?
+Date: Fri, 23 Jun 2000 10:29:17 -0400
+Organization: Walter Oney Software
+Lines: 17
+Message-ID: <3953743D.20077A47@oneysoft.com>
+References: <961762300.74451@elch.in-berlin.de>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Trace: zq2kOUJW3m1nh902pmxg+UAdd5RBQaAKoCZBMF1+7Y8=
+X-Complaints-To: abuse@rcn.com
+NNTP-Posting-Date: 23 Jun 2000 14:30:07 GMT
+X-Accept-Language:  en
+X-Mailer:  Mozilla 4.7 [en] (Win98; I)
+Xref: zonnet-feed comp.os.ms-windows.programmer.vxd:3068
+
+Peter Remmers wrote:
+> I can hook a hardware interrupt with VPIC_Virtualize_IRQ,
+> but how do I unregister my interrupt handler??
+
+VPICD_Force_Default_Behavior.
+
+Just to clarify why it has this quaint name: VPICD thinks (and has since
+3.0) that there's a 16-bit interrupt routine in some virtual machine
+that handles your interrupt. When you call VPICD_Virtualize_IRQ, VPICD
+thinks you want to control *which* VM gets the interrupt. (Your ISR does
+nothing of the kind, of course, but that doesn't alter VPICD's
+perception). So, when you're done "virtualizing" your device, you want
+to restore the default behavior.
+
+--
+Walter Oney
+http://www.oneysoft.com

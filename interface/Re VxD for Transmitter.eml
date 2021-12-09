@@ -1,0 +1,63 @@
+Return-Path: <pitti@amendestr.in-berlin.de>
+Received: from relay2.zonnet.nl ([10.170.1.20]) by
+          mail2.zonnet.nl (Netscape Messaging Server 4.1) with ESMTP id
+          FXBTZJ00.EMC for <rgosens@zonnet.nl>; Fri, 7 Jul 2000 14:14:09 +0200 
+Received: from amendestr.in-berlin.de ([193.174.1.25]) by
+          relay2.zonnet.nl (Netscape Messaging Server 4.1) with ESMTP id
+          FXBTZH03.WDS for <rgosens@zonnet.nl>; Fri, 7 Jul 2000 14:14:05 +0200 
+Received: from p2 (p2.amendestr.in-berlin.de [192.168.1.1])
+	by amendestr.in-berlin.de (8.9.3/8.9.3/SuSE Linux 8.9.3-0.1) with SMTP id MAA04087
+	for <rgosens@zonnet.nl>; Fri, 7 Jul 2000 12:44:01 +0200
+Message-ID: <008a01bfe807$e1794720$0101a8c0@amendestr.inberlin.de>
+From: "Peter Remmers" <pitti@amendestr.in-berlin.de>
+To: "Rik G." <rgosens@zonnet.nl>
+References: <001b01bfe748$fa3b11e0$a08323d5@rikcomp2>
+Subject: Re: VxD for Transmitter?
+Date: Fri, 7 Jul 2000 13:38:29 +0200
+MIME-Version: 1.0
+Content-Type: text/plain;
+	charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Mailer: Microsoft Outlook Express 5.00.2615.200
+X-MimeOLE: Produced By Microsoft MimeOLE V5.00.2615.200
+
+> >Huh? How do you know?
+>
+>
+> I read your desription: interrupts every 1.5 ms...
+
+That's what I thought.
+
+> I'm on the same project. I had no problem doing it in DOS.
+> This is a bit harder.
+
+Same here.
+
+> Are you using the parallel port IRQ 7? What software do you intend to use
+it
+> with?
+
+Yes.
+I'm doing it more or less just for fun. It's supposed to be for FMS
+the free model flight simulator (http://simulator.home.pages.de)
+I offered the author that he can use it in his program.
+
+I also want to extend it to be a joystick driver, so that every
+DirectInput program can use it.
+
+At the moment I have two test apps which open the VxD and do IOCTLs
+to it to read the channel timings. One console version which printf's
+the numbers and one MFC app with progress controls for the channels.
+
+I'm still thinking about an elegant way to select the port dynamically
+instead of hardcoded IO/IRQ addresses.
+I wrote a function that enumerates the ports through
+_VCOMM_Enumerate_DevNodes and uses configuration manager services
+to find out the IO address and IRQ, but it isn't used yet.
+
+If you want, I can send you my sources as they are at the moment.
+
+Peter
+

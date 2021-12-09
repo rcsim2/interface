@@ -1,0 +1,92 @@
+Path: zonnet-reader-1!zonnet-feed!ams-newsfeed.speedport.net!ldn-newsfeed.speedport.net!newsfeed.speedport.net!news-hub.cableinet.net!newsfeed.direct.ca!look.ca!newsfeed.concentric.net!newsfeed.ozemail.com.au!ozemail.com.au!not-for-mail
+From: "Geoff Chappell" <geoffch@no.junk.mail.please>
+Newsgroups: comp.os.ms-windows.programmer.vxd
+References: <961762300.74451@elch.in-berlin.de> <3953743D.20077A47@oneysoft.com> <961777140.847123@elch.in-berlin.de>
+Subject: Re: opposite of VPICD_Virtualize_IRQ ?
+Lines: 76
+Organization: none, just embarrassing disorganisation
+X-Newsreader: Microsoft Outlook Express 4.72.3110.1
+X-MimeOLE: Produced By Microsoft MimeOLE V4.72.3110.3
+Message-ID: <1oL55.23554$N4.918767@ozemail.com.au>
+NNTP-Posting-Host: 1cust144.tnt3.bne1.da.uu.net
+X-Trace: ozemail.com.au 962036349 210.84.85.144 (Tue, 27 Jun 2000 02:19:09 EST)
+NNTP-Posting-Date: Tue, 27 Jun 2000 02:19:09 EST
+Distribution: world
+Date: Tue, 27 Jun 2000 02:15:18 +1000
+Xref: zonnet-feed comp.os.ms-windows.programmer.vxd:3091
+
+Peter Remmers wrote in message <961777140.847123@elch.in-berlin.de>...
+>Yes, I had the impression that it was not considered that a VxD may want
+>to process the interrupt itself, but instead just delegates it.
+>Now you've confirmed this.
+
+Well, it certainly is considered that a VxD may want to process the
+interrupt entirely in ring 0. This is a very long-standing provision.
+
+>Does this work with IRQ sharing? What if my VxD is just one in a chain
+>of multiple handlers for the same interrupt? (VPICD_OPT_CAN_SHARE)
+>If I call this function do the other handlers also get removed?
+
+Not unless you do it under Windows 3.0, in which version the
+VPICD_Force_Default_Behavior service has a very slight implementation that
+does not properly support shared IRQs.
+
+That aside, consider that with each successful call to VPICD_Virtualize_IRQ,
+the caller gets an IRQ handle that represents what the VPICD knows about
+that particular "virtualisation" of that IRQ. When an IRQ has multiple
+simultaneous "virtualisations", there are multiple distinct IRQ handles. On
+a call to VPICD_Force_Default_Behavior, the VPICD just undoes everything
+that is represented by the given handle. Other handles that have been
+created for that same IRQ level are unaffected.
+
+>As I was looking for a way to remove my interrupt handler, I found
+>an option: VPICD_OPT_VIRT_INT_REJECT
+>The explanation: "Within your virtual interrupt procedure,
+>set this bit and return with the carry flag set if you no longer
+>want the interrupt virtualized."
+>I was confused, ...
+
+It should read more like "set this bit, so that your virtual interrupt
+procedure may return with the carry flag set to reject the virtual
+interrupt."
+
+
+A Virtual Interrupt Procedure is one of the several callback routines that
+you may specify when you "virtualise " an IRQ level via the VPICD. The
+Hardware Interrupt Procedure is the callback routine that actually receives
+hardware interrupts at that IRQ level. If your VxD wants to direct the
+handling of one of these interrupts to an application-level interrupt
+handler (16-bit or 32-bit, V86 or PM, through whatever serves as the
+Interrupt Vector Table), it sets an interrupt request for the chosen VM (or,
+with sophistication, VMs). When the VPICD gets round to arranging this
+virtual interrupt, it first calls you back through your Virtual Interrupt
+Procedure (if you supplied one).
+
+In Windows 3.xx, the Virtual Interrupt Procedure is just a notification. It
+has no meaningful return value. Under Windows 95, the Virtual Interrupt
+Procedure may return a set carry flag as a direction that the VPICD should
+not after all send this virtual interrupt to the application level.
+
+Of course, the Windows 95 VPICD cannot just start interpreting the carry
+flag that is returned by a Virtual Interrupt Procedure, since that would
+break old VxDs. The solution is that when a VxD registers its Virtual
+Interrupt Procedure (i.e., when calling VPICD_Virtualize_IRQ), it may
+specify as an option (namely, VPICD_OPT_VIRT_INT_REJECT) that the procedure
+knows the Windows 95 provision for rejecting a proposed virtual interrupt.
+That way, the VPICD can know that a carry flag returned by that particular
+Virtual Interrupt Procedure is meaningful.
+
+In closing, note that whoever wrote the brief insertion to document the
+VPICD_OPT_VIRT_INT_REJECT flag apparently did not think to update the
+documentation of the Virtual Interrupt Procedure - even though the flag's
+sole purpose is to support a change in the procedure's behaviour. The
+several similar examples in the VPICD documentation suggest less an
+understandable oversight than a systematic neglect.
+
+----
+Geoff Chappell
+Consulting Software Analyst
+
+email:  geoffch@ozemail.com.au
+web:   www.ozemail.com.au/~geoffch
+

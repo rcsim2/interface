@@ -1,0 +1,3 @@
+See: BASE in Win95 DDK Help file
+
+LNK4078 warnings can be ignored

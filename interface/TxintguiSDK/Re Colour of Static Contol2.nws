@@ -1,0 +1,29 @@
+Path: zonnet-reader-1!zonnet-feed!ams-newsfeed.speedport.net!newsfeed.speedport.net!newsfeeds.belnet.be!news.belnet.be!skynet.be!tank.news.pipex.net!pipex!warm.news.pipex.net!pipex!camcon.co.uk!not-for-mail
+From: Tilda <Tilda@spammenot.indigo8.freeserve.co.uk>
+Newsgroups: comp.os.ms-windows.programmer.win32
+Subject: Re: Colour of Static Contol
+Date: Sat, 15 Jul 2000 09:50:29 +0100
+Organization: Usually Lacking
+Lines: 12
+Message-ID: <397025D5.37E5F08D@spammenot.indigo8.freeserve.co.uk>
+References: <bJTb5.1774$_C4.50810@zonnet-reader-1> <8kp3vv$t6o17@nrn2.NRCan.gc.ca> <TqVb5.1784$_C4.51256@zonnet-reader-1>
+NNTP-Posting-Host: 193.35.221.168
+Mime-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+X-Mailer: Mozilla 4.73 [en] (WinNT; U)
+X-Accept-Language: en
+Xref: zonnet-feed comp.os.ms-windows.programmer.win32:20462
+
+
+"Rik G." wrote:
+> 
+> But how can I get its color to change when say a button is pressed?
+> 
+
+Delete/re-create brushes etc. when button pressed.  Then
+InvalidateRect(), UpdateWindow() on the control to force
+repainting.
+
+
+T

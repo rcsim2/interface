@@ -1,0 +1,27 @@
+ VFINTD
+
+ Timestamp is 395907e2 (Tue Jun 27 22:00:34 2000)
+
+ Preferred load address is 00400000
+
+ Start         Length     Name                   Class
+ 0001:00000000 00000074H _LDATA                  CODE
+ 0001:00000074 00000088H _LTEXT                  CODE
+ 0002:00000000 0000000dH _ITEXT                  CODE
+
+  Address         Publics by Value              Rva+Base   Lib:Object
+
+ 0001:00000000       VFINTD_DDB                 00401000   vfintd.obj
+ 0001:00000074       VFINTD_Destroy_VM          00401074 f vfintd.obj
+ 0001:00000085       VFINTD_Control             00401085 f vfintd.obj
+ 0001:00000095       VFINTD_API_Proc            00401095 f vfintd.obj
+ 0001:000000d8       VFINTD_Hw_Int              004010d8 f vfintd.obj
+ 0001:000000f0       VFINTD_EOI                 004010f0 f vfintd.obj
+ 0002:00000000       VFINTD_Device_Init         00401200 f vfintd.obj
+
+ entry point at        0000:00000000
+
+ Static symbols
+
+
+FIXUPS: 108a

@@ -1,0 +1,58 @@
+Path: zonnet-reader-1!zonnet-feed!news-feed1.eu.concert.net!newsfeed.cwix.com!feed1.news.rcn.net!rcn!not-for-mail
+From: "dave porter" <porter@zultranet.com>
+Newsgroups: comp.os.ms-windows.programmer.vxd
+Subject: Re: Geoff, please expand...
+Date: Fri, 7 Jul 2000 09:36:49 -0400
+Lines: 42
+Message-ID: <8k4mf7$bul$3@bob.news.rcn.net>
+References: <8jg95.11239$vJ6.325694@zonnet-reader-1>
+X-Trace: v0A7lWZ97mWJMLKthRE1iwcFG69AHHFTPGAWso/LhjE=
+X-Complaints-To: abuse@rcn.com
+NNTP-Posting-Date: 7 Jul 2000 13:37:43 GMT
+X-Newsreader:  Microsoft Outlook Express 5.00.2919.6600
+X-MSMail-Priority:  Normal
+X-Priority:  3
+X-MimeOLE:  Produced By Microsoft MimeOLE V5.00.2919.6600
+Xref: zonnet-feed comp.os.ms-windows.programmer.vxd:3297
+
+
+
+"Rik G." <rgosens@zonnet.nl> wrote in message
+news:8jg95.11239$vJ6.325694@zonnet-reader-1...
+> This was something you wrote concerning DeviceIoControl():
+
+I am not Geoff, but...
+
+> If an output buffer is given (meaning non-null address and non-zero size),
+> then the last byte in the buffer and the first byte in the buffer and
+every
+> byte at multiples of 1000h bytes into the buffer must be writable.
+>
+> It doesn't make sense to me. Please expand.
+>
+
+If you specify an output buffer, then it must be capable of receiving
+output. That is to say, it must be writeable.
+
+This applies whether or not this specific ioctl function actually
+intends to write to the buffer or not. The ioctl mechanism always
+treats the 'output buffer' as if it were to be used as an output buffer.
+
+The entire buffer must be writeable. Which is to say, every byte of the
+buffer must be writeable. Since (as used in Windows) the x86 applies
+protection on a per-page basis, that's the same as saying every page
+must be writeable. Therefore the OS probes every page. The page size
+is 4KB, aka 0x1000 bytes.
+
+
+> Regards
+>
+> R.
+> --
+> The rumblynge of a fart, and every soun,
+> Nis but of eir reverberacioun[...]
+>
+>                                    -- Geoffrey Chaucer
+>
+>
+

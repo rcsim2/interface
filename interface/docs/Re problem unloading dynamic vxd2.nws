@@ -1,0 +1,44 @@
+Path: zonnet-reader-1!zonnet-feed!ams-newsfeed.speedport.net!newsfeed.speedport.net!colt.net!news0.de.colt.net!blackbush.xlink.net!newsfeed01.sul.t-online.de!newsmm00.btx.dtag.de!t-online.de!news.t-online.com!not-for-mail
+From: "Thomas Mielke" <Thomas_Mielke@t-online.de>
+Newsgroups: comp.os.ms-windows.programmer.vxd
+Subject: Re: problem unloading dynamic vxd
+Date: Fri, 9 Jun 2000 01:31:51 +0200
+Organization: T-Online
+Lines: 24
+Message-ID: <8hpa80$kte$15$1@news.t-online.com>
+References: <8han0m$cci$12$1@news.t-online.com> <Ruo%4.10606$N4.387072@ozemail.com.au>
+Mime-Version: 1.0
+Content-Type: text/plain; charset=ISO-8859-1
+Content-Transfer-Encoding: 8bit
+X-Trace: news.t-online.com 960506944 15 21422 04141981545-0001 000608 23:29:04
+X-Complaints-To: abuse@t-online.de
+X-Sender: 04141981545-0001@t-dialin.net
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Newsreader: Microsoft Outlook Express 5.00.2314.1300
+X-MimeOLE: Produced By Microsoft MimeOLE V5.00.2314.1300
+Xref: zonnet-feed comp.os.ms-windows.programmer.vxd:2882
+
+I get an error code of 0! And I know, that 0 means success, sorry!
+But the VxD is not unloaded.
+It should be unloaded with the CloseFile call already, but it doesn't!
+BTW, the Sys_Dynamic_Device_Exit is definitely not called by the system!
+
+
+
+> When DeleteFile is used to delete a file, it returns 1 if the deletion
+> (i.e., the call to int 21h function 7141h) succeeds. However, when
+> DeleteFile is used to unload a VxD, the effect of coding in both KERNEL32
+> and VWIN32 is that if the unload succeeds (i.e., VXDLDR_UnloadDevice
+returns
+> a clear carry flag) then DeleteFile returns 0. A non-zero return from
+> DeleteFile is actually the error code from VXDLDR_UnloadDevice.
+>
+> A VxD cannot be unloaded unless it responds to the Sys_Dynamic_Device_Exit
+> control by clearing the carry flag. Failure on this point is reported by
+an
+> error code of 7 from VXDLDR_UnloadDevice.
+>
+> So, what error code did you get?
+
+

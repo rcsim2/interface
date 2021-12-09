@@ -1,0 +1,48 @@
+Path: zonnet-reader-1!zonnet-feed!news-feed1.eu.concert.net!news.algonet.se!algonet!newsfeedZ.netscum.dQ!netscum.int!fu-berlin.de!uni-berlin.de!elch.in-berlin.DE!not-for-mail
+From: "Peter Remmers" <pitti@amendestr.in-berlin.de>
+Newsgroups: comp.os.ms-windows.programmer.vxd
+Subject: Re: Trying again: LPT I/O Port and IRQ
+Date: Thu, 3 Aug 2000 06:42:52 +0200
+Organization: Individual Network Berlin e.V.
+Lines: 30
+Message-ID: <965277763.322678@elch.in-berlin.de>
+References: <155i5.4861$63.108249@zonnet-reader-1>
+NNTP-Posting-Host: elch.in-berlin.de (192.109.42.5)
+X-Trace: fu-berlin.de 965277763 6345340 192.109.42.5 (16 35)
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Newsreader: Microsoft Outlook Express 5.00.2615.200
+X-MimeOLE: Produced By Microsoft MimeOLE V5.00.2615.200
+Cache-Post-Path: elch.in-berlin.de!unknown@amendestr.in-berlin.de
+X-Cache: nntpcache 2.3.3 (see http://www.nntpcache.org/)
+Xref: zonnet-feed comp.os.ms-windows.programmer.vxd:3642
+
+
+Rik G. <rgosens@zonnet.nl> schrieb in im Newsbeitrag:
+155i5.4861$63.108249@zonnet-reader-1...
+> What's the best way to find out, *in my VXD*, programmatically, what I/O
+> port and IRQ are used by the printer port (LPT).
+
+Use VCOMM_Enumerate_DevNodes() to get a list of ports under VCOMM control.
+Iterate that list with List_Get_First() and List_Get_Next() to get a devnode
+pointer for every port.
+
+Now you can call CM_Get_Device_ID() to get a string like
+"BIOS\*PNP0400,*PNP0400".
+With my machine it's "ACPI\*PNP0400,*PNP0400" for LPT1.
+Call CM_Read_Registry_Value() and get the "PORTNAME" entry to get the name
+of the port as a string, like "LPT1".
+You can get any entry out of "HKLM\Enum\ACPI\*PNP0400\0\", for example. (my
+LPT1)
+And most importantly, call CM_Get_Alloc_Log_Conf() to let it fill a struct
+with all the info about IRQ and IO addresses.
+
+VCOMM_Enumerate_DevNodes() will enumerate physical LPT and COM ports, as
+well
+as virtual ports, and you will get all installed modems.
+CM_Get_Alloc_Log_Conf() will fail for anything but physical ports, though.
+
+
+Peter
+
+

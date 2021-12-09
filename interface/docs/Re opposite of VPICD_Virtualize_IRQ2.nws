@@ -1,0 +1,70 @@
+Path: zonnet-reader-1!zonnet-feed!ams-newsfeed.speedport.net!ldn-newsfeed.speedport.net!newsfeed.speedport.net!newsfeed.icl.net!news.algonet.se!algonet!newsfeedZ.netscum.dQ!netscum.int!fu-berlin.de!uni-berlin.de!elch.in-berlin.DE!not-for-mail
+From: "Peter Remmers" <pitti@amendestr.in-berlin.de>
+Newsgroups: comp.os.ms-windows.programmer.vxd
+Subject: Re: opposite of VPICD_Virtualize_IRQ ?
+Date: Fri, 23 Jun 2000 18:19:45 +0200
+Organization: Individual Network Berlin e.V.
+Lines: 52
+Message-ID: <961777140.847123@elch.in-berlin.de>
+References: <961762300.74451@elch.in-berlin.de> <3953743D.20077A47@oneysoft.com>
+NNTP-Posting-Host: elch.in-berlin.de (192.109.42.5)
+X-Trace: fu-berlin.de 961777140 6052562 192.109.42.5 (16 35)
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Newsreader: Microsoft Outlook Express 5.00.2615.200
+X-MimeOLE: Produced By Microsoft MimeOLE V5.00.2615.200
+Cache-Post-Path: elch.in-berlin.de!unknown@amendestr.in-berlin.de
+X-Cache: nntpcache 2.3.3 (see http://www.nntpcache.org/)
+Xref: zonnet-feed comp.os.ms-windows.programmer.vxd:3071
+
+> Peter Remmers wrote:
+> > I can hook a hardware interrupt with VPIC_Virtualize_IRQ,
+> > but how do I unregister my interrupt handler??
+>
+> VPICD_Force_Default_Behavior.
+
+Hey thanks! That's exactly what I was looking for.
+
+> Just to clarify why it has this quaint name: VPICD thinks (and has since
+> 3.0) that there's a 16-bit interrupt routine in some virtual machine
+> that handles your interrupt. When you call VPICD_Virtualize_IRQ, VPICD
+> thinks you want to control *which* VM gets the interrupt. (Your ISR does
+> nothing of the kind, of course, but that doesn't alter VPICD's
+> perception). So, when you're done "virtualizing" your device, you want
+> to restore the default behavior.
+
+Yes, I had the impression that it was not considered that a VxD may want
+to process the interrupt itself, but instead just delegates it.
+Now you've confirmed this.
+
+Does this work with IRQ sharing? What if my VxD is just one in a chain
+of multiple handlers for the same interrupt? (VPICD_OPT_CAN_SHARE)
+If I call this function do the other handlers also get removed?
+
+As I was looking for a way to remove my interrupt handler, I found
+an option: VPICD_OPT_VIRT_INT_REJECT
+The explanation: "Within your virtual interrupt procedure,
+set this bit and return with the carry flag set if you no longer
+want the interrupt virtualized."
+I was confused, because the VPICD_IRQ_Descriptor struct I use to
+virtualize the interrupt is in the IDATA segment, which gets discarded
+after inizialization. Or it's on the stack and not valid after
+the call to VPICD_Virtualize_Interrupt(), or even dynamically
+allocated and freed after the call.
+So, how could I possibly set a bit in this struct at cleanup time?
+None of the samples I looked at have this struct in the locked data
+segment...
+Second, this would mean, that I could only remove the interrupt
+handler, if I can force my hardware to cause an interrupt (which, in
+my case, I can't).
+Has anyone ever used this flag? What's it useful for??
+
+Oh, btw. What's the difference between Services and APIs?
+The DDK docs have a section VPICD APIs, with the bimodal functions,
+and a section Services with all the rest. So what's the difference?
+Does this have to do with how they get called? Are APIs the ones that
+you call with the INT 2F thingy?
+
+Peter
+
+

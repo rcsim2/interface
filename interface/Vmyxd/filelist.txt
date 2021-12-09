@@ -1,0 +1,10 @@
+Vmyxd.asm
+Vmyxd.def
+version.rc
+buildvxd.bat
+buildvxd98.bat
+buildversion.bat
+buildversion98.bat
+buildvxd_output.bat
+getfiles.bat
+Vmyxd.vxd

@@ -1,0 +1,36 @@
+Path: zonnet-reader-1!zonnet-feed!ams-newsfeed.speedport.net!newsfeed.speedport.net!news-spur1.maxwell.syr.edu!news.maxwell.syr.edu!newsfeed.atl.bellsouth.net.MISMATCH!newsfeed.atl!news4.mia.POSTED!not-for-mail
+From: smpoole7@bellsouth.net.nospampleez
+Newsgroups: comp.os.ms-windows.programmer.vxd
+Subject: Re: Debug messages without second computer?
+Organization: Majick Attick
+Reply-To: smpoole7@bellsouth.net.nospampleez
+Message-ID: <395ffd6d.31654096@news.bhm.bellsouth.net>
+References: <961680693.869743@elch.in-berlin.de>
+X-Newsreader: Forte Free Agent 1.11/32.235
+Lines: 20
+Date: Mon, 03 Jul 2000 02:46:53 GMT
+NNTP-Posting-Host: 209.214.108.37
+X-Trace: news4.mia 962592248 209.214.108.37 (Sun, 02 Jul 2000 22:44:08 EDT)
+NNTP-Posting-Date: Sun, 02 Jul 2000 22:44:08 EDT
+Xref: zonnet-feed comp.os.ms-windows.programmer.vxd:3209
+
+On Thu, 22 Jun 2000 15:32:22 +0200, "Peter Remmers"
+<pitti@amendestr.in-berlin.de> wrote:
+
+To the other replies, I would add this.
+
+If you just want simple notification of how your VxD is acting, you
+can use the SHELL_Message service to display a message box at
+different points in your code. Use the VMM service Sprintf to format a
+string, if need be.
+
+I have boilerplate code here, well-used and abused, that makes little
+windows to say things like, "In dynamic init" and "shutting down."  I
+simply put a call to these boilerplate functions at various points in
+the program, then link in the code.
+
+For release, of course, I zap the calls and drop that .OBJ file.
+
+-- Stephen
+http://www.jediknight.com/~smpoole/fixed.html
+remove "nospampleez" to reply via email

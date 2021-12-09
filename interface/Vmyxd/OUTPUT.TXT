@@ -1,0 +1,13 @@
+ Assembling: Vmyxd.asm
+Microsoft (R) 32-Bit Incremental Linker Version 5.00.7022
+Copyright (C) Microsoft Corp 1992-1997. All rights reserved.
+
+LINK : warning LNK4078: multiple "LCODE_vxdpn" sections found with different attributes (C0000040)
+LINK : warning LNK4078: multiple "LCODE_vxdpn" sections found with different attributes (40000040)
+LINK : warning LNK4078: multiple "LCODE_vxdpn" sections found with different attributes (C0000040)
+LINK : warning LNK4039: section "MCODE_vxdpni" specified with /SECTION option does not exist
+LINK : warning LNK4039: section "MCODE_vxdpni" specified with /SECTION option does not exist
+LINK : warning LNK4039: section "MCODE_vxdpdi" specified with /SECTION option does not exist
+LINK : warning LNK4039: section "MCODE_vxdpdi" specified with /SECTION option does not exist
+LINK : warning LNK4039: section "MCODE_vxdni" specified with /SECTION option does not exist
+LINK : warning LNK4039: section "MCODE_vxdni" specified with /SECTION option does not exist

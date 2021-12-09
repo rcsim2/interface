@@ -1,0 +1,154 @@
+From: "John A. Grant" <jazrant@zsc.nrcan.zc.ca>
+Newsgroups: comp.os.ms-windows.programmer.win32
+Subject: Re: Colour of Static Contol
+Date: Sat, 15 Jul 2000 03:28:52 -0400
+Organization: Natural Resources Canada / Ressources naturelles Canada
+Lines: 139
+Message-ID: <8kp3vv$t6o17@nrn2.NRCan.gc.ca>
+References: <bJTb5.1774$_C4.50810@zonnet-reader-1>
+NNTP-Posting-Host: jag.ess.nrcan.gc.ca
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Newsreader: Microsoft Outlook Express 5.00.2919.6600
+X-MimeOLE: Produced By Microsoft MimeOLE V5.00.2919.6600
+Path: zonnet-reader-1!zonnet-feed!ams-newsfeed.speedport.net!newsfeed.speedport.net!news-spur1.maxwell.syr.edu!news.maxwell.syr.edu!sunqbc.risq.qc.ca!torn!webster.srv.gc.ca!news.NRCan.gc.ca!not-for-mail
+Xref: zonnet-feed comp.os.ms-windows.programmer.win32:20443
+
+"Rik G." <rgosens@zonnet.nl> wrote in message
+news:bJTb5.1774$_C4.50810@zonnet-reader-1...
+> Yes I know: it's a FAQ, but I've only seen sucky answers.
+>
+> So why can't I change the colour of a static control's text by doing this:
+>
+> SetTextColor( GetDC(GetDlgItem(hDlgWnd,IDC_STATIC)), RGB(255,0,0));
+
+    I doubt if you've seen "sucky answers". You've probably
+    seen the correct answers (WM_CTLCOLORSTATIC),
+    but you haven't recognized them as being correct. There
+    are very few "sucky answers" in this newsgroup.
+
+    It would help a lot if you had some basic grounding in
+    writing Windows programs. It seems that you lack the
+    fundamentals and you're just making it up as you go along
+    At your earliest opportunity, get yourself a copy of
+    "Programming Windows" by Charles Petzold (Microsoft
+    Press) and learn the fundamentals.  If you don't, you'll
+    just be continuing to guess.
+
+    Rule #1: "in Windows, everything is a window"
+    Rule #2: "every window has a WndProc"
+    Rule #3: "every window does it's own painting at WM_PAINT"
+
+    Presumably, you know enough about Windows programming
+    that you have been able to create a main window with a
+    WndProc() and that you're handling the WM_PAINT message
+    to paint the window.
+
+    My question to you is "what makes you think the painting
+    process for any window is any different than the process
+    you are using to paint your own window?". The answer is
+    that there is no difference. Every window has a WndProc
+    and every WndProc gets a WM_PAINT message when it
+    is required that the window paint itself. Buttons, listboxes,
+    checkboxes, radio buttons are all windows and they work
+    exactly the same.  Somewhere inside Windows, there is
+    a WndProc() for an "edit" control, and another one for a
+    "listbox" and yet another for a "checkbox". At some point,
+    they all do this:
+        case WM_PAINT:
+            PAINTSTRUCT ps;
+            HDC hdc=BeginPaint(hwnd,&ps);
+            ....draw whatever...
+            EndPaint(hwnd,&ps);
+            break;
+
+    It's also clear that you don't really know what an HDC is.
+    Think of an HDC as being a 'drawing surface'. When it's
+    time to paint, you request a drawing surface (with a variety
+    of functions like BeginPaint, GetDC, CreateDC) and you
+    draw your picture into that surface. When you are done,
+    you must dispose of that HDC properly, with EndPaint(),
+    ReleaseDC() or DeleteDC()
+
+    You didn't say where you were doing this, but judging by
+    your naivete, I'm going to assume you're trying to do this
+    at WM_INITDIALOG.  So let's look at your code, split up
+    into several statements.
+        BOOL CALLBACK MyDlgProc(...)
+        {
+            ...
+            case WM_INITDIALOG:
+                HWND hwnd=GetDlgItem(hDlgWnd,IDC_STATIC);
+                HDC hdc=GetDC(hwnd);
+                SetTextColor(hdc,RGB(255,0,0));
+                break;
+            ...
+        }
+
+    Before I proceed, I'll point out that you have a resource leak
+    because you're not calling ReleaseDC().  But you have
+    more serious problems than that...
+
+    As I said, somewhere in Windows, there is a WndProc()
+    for the static control that is doing this:
+        BOOL CALLBACK InternalStaticWndProc(...)
+            case WM_PAINT:
+                PAINTSTRUCT ps;
+                HDC hdc=BeginPaint(hwnd,&ps);
+                ...draw the static control using the user's
+                    preferred text & background colours...
+                EndPaint(hwnd,&ps);
+                break;
+
+    Now look at your code and then look at the code for the
+    static control painting. They are galaxies apart. For one
+    thing, anything you do to the HDC that you obtained with
+    GetDC() is completely unknown to the code that draws
+    the static control, because it's an entirely different HDC.
+    In fact, your HDC is not even a drawing surface, because
+    you didn't draw anything!. All you did is get a surface, set
+    a text colour and then you left it hanging around. You never
+    drew into it and neither did Windows.  So in fact you've
+    done nothing.
+
+    You need to handle the WM_CTLCOLORSTATIC message.
+    The InternalStaticWndProc() can be imagined to do something
+    like this:
+        case WM_PAINT:
+                PAINTSTRUCT ps;
+                HDC hdc=BeginPaint(hwnd,&ps);
+                HWND hwndparent=GetParent(hwnd);
+
+                // give you an opportunity to over-ride
+                HBRUSH hbrush=SendMessage(hwndparent,
+                        WM_CTLCOLORSTATIC,hdc,hwnd);
+
+                bool usedefault=hbrush==NULL;
+                if(usedefault){
+                    SetTextColor(hdc,GetSysColor(...));
+                    hbrush=GetSysColorBrush(...);
+                }else{
+                    // parent WndProc() has set text colour
+                    // and provided the brush
+                }
+
+                RECT rect;
+                GetClientRect(hwnd,&rect);
+                FillRect(hdc,&rect,hbrush);
+                TextOut(hdc,...);
+                if(!usedefault) DeleteObject(hbrush);
+
+                EndPaint(hwnd,&ps);
+                break;
+
+    That's all speculative and very rough, but it gives you an
+    idea how the message is related to drawing the control.
+
+    I hope that wasn't a "sucky answer".
+
+--
+John A. Grant  * I speak only for myself *  (remove 'z' to reply)
+Radiation Geophysics, Geological Survey of Canada, Ottawa
+If you followup, please do NOT e-mail me a copy: I will read it here
+
+

@@ -1,0 +1,55 @@
+Path: zonnet-reader-1!zonnet-feed!ams-newsfeed.speedport.net!newsfeed.speedport.net!colt.net!news0.de.colt.net!blackbush.xlink.net!fu-berlin.de!uni-berlin.de!elch.in-berlin.DE!not-for-mail
+From: "Peter Remmers" <pitti@amendestr.in-berlin.de>
+Newsgroups: comp.os.ms-windows.programmer.vxd
+Subject: Debug messages without second computer?
+Date: Thu, 22 Jun 2000 15:32:22 +0200
+Organization: Individual Network Berlin e.V.
+Lines: 38
+Message-ID: <961680693.869743@elch.in-berlin.de>
+NNTP-Posting-Host: elch.in-berlin.de (192.109.42.5)
+X-Trace: fu-berlin.de 961680694 5280661 192.109.42.5 (16 35)
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Newsreader: Microsoft Outlook Express 5.00.2615.200
+X-MimeOLE: Produced By Microsoft MimeOLE V5.00.2615.200
+Cache-Post-Path: elch.in-berlin.de!unknown@amendestr.in-berlin.de
+X-Cache: nntpcache 2.3.3 (see http://www.nntpcache.org/)
+Xref: zonnet-feed comp.os.ms-windows.programmer.vxd:3048
+
+Hi!
+
+Is there a way to see any debug messages without having to connect
+a second computer with a serial cable?
+
+At some point in the DDK it says that you can debug on the same
+computer if you switch to 640x480 16 colors and set debugvga=1 in
+the [386enh] section of the system.ini. The you could press F12
+to call up the debugger on the screen.
+
+But I tried it and it doesn't work... wdeb always says that it needs
+RTerm(98), loads win.com anyay, and pressing F12 when windows has
+finished booting up has no effect...
+
+Second, I read in the docs for _Debug_Out_Service and comrades
+that these services only work if you have the debug binaries
+of the OS running, otherwise they have no effect.
+But in a different part of the DDK documentation it says that
+you don't necessarily need the debug binaries to successfully
+write a VxD.
+
+So, to sum it up: Is there a way to let my VxD report what's
+going on, without a second computer and without the debug version
+of windows?
+
+In the early days, when I wrote for Win3.11 I used an application
+called WinDbg, that opened a window and showed the debug messages
+there. Is this still an option?
+
+I have Win98 SE. Where do I get the debug binries (should I
+really need them) ?
+Do the debug binaries work with a localized (german) version
+of windows ?
+
+Peter
+
+

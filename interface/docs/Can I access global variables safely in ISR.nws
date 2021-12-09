@@ -1,0 +1,29 @@
+Path: zonnet-reader-1!zonnet-feed!ams-newsfeed.speedport.net!ldn-newsfeed.speedport.net!newsfeed.speedport.net!news-hub.cableinet.net!news.vas-net.net!195.238.2.15.MISMATCH!skynet.be!nntp.kreonet.re.kr!news.kigam.re.kr!news2.kornet.net!not-for-mail
+From: "zincle" <in@hi.com>
+Newsgroups: comp.os.ms-windows.programmer.vxd
+Subject: Can I access global variables safely in ISR?
+Date: Tue, 20 Jun 2000 15:41:05 +0900
+Organization: Korea Telecom
+Lines: 12
+Message-ID: <8in3jh$4al$1@news2.kornet.net>
+NNTP-Posting-Host: 203.232.107.133
+X-Trace: news2.kornet.net 961483185 4437 203.232.107.133 (20 Jun 2000 06:39:45 GMT)
+X-Complaints-To: news@news2.kornet.net
+NNTP-Posting-Date: 20 Jun 2000 06:39:45 GMT
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Newsreader: Microsoft Outlook Express 5.00.2314.1300
+X-MimeOLE: Produced By Microsoft MimeOLE V5.00.2314.1300
+Xref: zonnet-feed comp.os.ms-windows.programmer.vxd:3019
+
+Does interrupt routine called in arbitrary thread context?
+
+Then if I access global variables in ISR, what happens? (BOSD?)
+
+My device driver has to do quite a few of works in ISR. When interrupt
+occurs, the driver reconfigure HW and start DMA which is supplied by master
+PCI. Most of works that driver does are executed in ISR.
+
+At present, my driver works well even though I access global variables in
+ISR. I want to make the driver more stable at any situation.
+

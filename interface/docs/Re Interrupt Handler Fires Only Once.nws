@@ -1,0 +1,96 @@
+Path: zonnet-reader-1!zonnet-feed!news-feed1.eu.concert.net!news-feed1.de1.concert.net!fu-berlin.de!uni-berlin.de!elch.in-berlin.DE!not-for-mail
+From: "Peter Remmers" <pitti@amendestr.in-berlin.de>
+Newsgroups: comp.os.ms-windows.programmer.vxd
+Subject: Re: Interrupt Handler Fires Only Once
+Date: Thu, 6 Jul 2000 18:29:32 +0200
+Organization: Individual Network Berlin e.V.
+Lines: 78
+Message-ID: <962900944.717315@elch.in-berlin.de>
+References: <57S85.10995$vJ6.318875@zonnet-reader-1> <962877326.379696@elch.in-berlin.de> <E8%85.11092$vJ6.319814@zonnet-reader-1>
+NNTP-Posting-Host: elch.in-berlin.de (192.109.42.5)
+X-Trace: fu-berlin.de 962900944 1652206 192.109.42.5 (16 35)
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Newsreader: Microsoft Outlook Express 5.00.2615.200
+X-MimeOLE: Produced By Microsoft MimeOLE V5.00.2615.200
+Cache-Post-Path: elch.in-berlin.de!unknown@amendestr.in-berlin.de
+X-Cache: nntpcache 2.3.3 (see http://www.nntpcache.org/)
+Xref: zonnet-feed comp.os.ms-windows.programmer.vxd:3272
+
+
+Rik G. <rgosens@zonnet.nl> schrieb im Newsbeitrag:
+E8%85.11092$vJ6.319814@zonnet-reader-1......
+> >You didn't tell what IRQ you are handling.
+>
+>
+> Parallel port IRQ 7.
+>
+> >With most hardware you must acknoledge the interrupt, or it won't send
+> >another.
+>
+> How do I do that for the par. port?
+> I also read that VPICD_Phys_EOI and VPICD_Physically_Unmask are confusing.
+> I've tried any combination of the two. Still no go...
+
+With the parallel port there's no acknoledge.
+So a VPICD_Phys_EOI should be enough.
+Maybe your hIrq you pass to it is wrong?
+Oh, and an __asm clc before return may be important. I don't have more in
+my ISR either and it works.
+
+void LPTIntHandler()
+{
+    // ... do stuff
+
+    VPICD_Phys_EOI(hIrq);
+    __asm clc
+}
+
+I hook the interrupt as follows:
+
+HIRQ hIrq;
+VID irqdesc;
+
+irqdesc.VID_IRQ_Number       = 7;
+irqdesc.VID_Options          = VPICD_OPT_CAN_SHARE;
+irqdesc.VID_Hw_Int_Proc      = (DWORD)LPTIntHandler;
+irqdesc.VID_Virt_Int_Proc    = 0;
+irqdesc.VID_EOI_Proc         = 0;
+irqdesc.VID_Mask_Change_Proc = 0;
+irqdesc.VID_IRET_Proc        = 0;
+irqdesc.VID_IRET_Time_Out    = 500;
+irqdesc.VID_Hw_Int_Ref       = 0;
+
+hIrq = VPICD_Virtualize_IRQ (&irqdesc);
+// should check carry flag here!
+
+// enable interrupt at parallel port!
+__asm mov dx,37Ah
+__asm mov al,10h
+__asm out dx,al
+
+VPICD_Physically_Unmask(hIrq);
+
+and that's it. The IRQ level and port address are hardcoded for simplicity
+:-)
+
+To remove the interrupt handler I do:
+
+    if (hIrq)
+    {
+        __asm mov dx,37Ah
+        __asm mov al,00h
+        __asm out dx,al
+
+        dwVirtCount = VPICD_Get_Virtualization_Count(hIrq);
+
+        if (dwVirtCount == 1)
+            VPICD_Physically_Mask(hIrq);
+
+        VPICD_Force_Default_Behavior(hIrq);
+        hIrq = 0;
+    }
+
+Peter
+
+

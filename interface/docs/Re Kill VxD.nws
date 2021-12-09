@@ -1,0 +1,48 @@
+Path: zonnet-reader-1!zonnet-feed!news-feed1.eu.concert.net!newsfeed.direct.ca!look.ca!newsfeed.concentric.net!newsfeed.ozemail.com.au!ozemail.com.au!not-for-mail
+From: "Geoff Chappell" <geoffch@no.junk.mail.please>
+Newsgroups: comp.os.ms-windows.programmer.vxd
+References: <SR395.11117$vJ6.321358@zonnet-reader-1>
+Subject: Re: Kill VxD
+Lines: 32
+Organization: none, just embarrassing disorganisation
+X-Newsreader: Microsoft Outlook Express 4.72.3110.1
+X-MimeOLE: Produced By Microsoft MimeOLE V4.72.3110.3
+Message-ID: <IDQd5.40379$N4.1541293@ozemail.com.au>
+NNTP-Posting-Host: 1cust153.tnt1.bne1.da.uu.net
+X-Trace: ozemail.com.au 964154984 210.84.80.153 (Fri, 21 Jul 2000 14:49:44 EST)
+NNTP-Posting-Date: Fri, 21 Jul 2000 14:49:44 EST
+Distribution: world
+Date: Fri, 21 Jul 2000 14:51:25 +1000
+Xref: zonnet-feed comp.os.ms-windows.programmer.vxd:3462
+
+Rik G. wrote in message ...
+>Is there a Kill Process (as in Developer Studio's Process Viewer)
+equivalent
+>for VXDs?
+>Sometimes, when my dynaload VXD gets stuck, I can only unload it by
+>rebooting.
+
+Do you mean want to force a given VxD to be unloaded?
+
+If a VxD does not want to be unloaded, which it indicates by failing the
+Sys_Dynamic_Device_Exit control, then it cannot be unloaded - at least, not
+through formal interfaces.
+
+There are also things that the VxD may have done and which would prevent the
+VXDLDR from trying to unload the VxD. An example is that the VxD may export
+services and some VxD (including the same one) may have called one of those
+services. Some people would work around this by clearing the flag that
+indicates that this linkage of services has occurred.
+
+If a VxD would ever be unloaded in the normal course of execution, then you
+could force the unload by calling VXDLDR_UnloadDevice sufficiently many
+times. From a Win32 application, you achieve this by calling DeleteFile
+sufficiently many times (giving the VxD name via the \\.\ construction).
+
+----
+Geoff Chappell
+Consulting Software Analyst
+
+email:  geoffch@ozemail.com.au
+web:   www.ozemail.com.au/~geoffch
+

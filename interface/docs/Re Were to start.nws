@@ -1,0 +1,53 @@
+From: "Dmitri Kozlov" <no_Spam.d_kozlov@yahoo.com>
+Newsgroups: comp.os.ms-windows.programmer.vxd
+References: <MPG.13a445265ba30d4798968d@news.tin.it> <393de0e3@news> <MPG.13a8d43231873931989691@news.tin.it>
+Subject: Re: Were to start...
+Date: Fri, 9 Jun 2000 21:16:36 +1000
+Lines: 38
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Newsreader: Microsoft Outlook Express 5.00.2615.200
+X-MimeOLE: Produced By Microsoft MimeOLE V5.00.2615.200
+NNTP-Posting-Host: d99.cia.com.au
+Message-ID: <3940c80e@news>
+X-Trace: 9 Jun 2000 20:33:50 +1000, d99.cia.com.au
+Path: zonnet-reader-1!zonnet-feed!news-feed1.eu.concert.net!newsfeed.cwix.com!news.maxwell.syr.edu!intgwpad.nntp.telstra.net!news1.optus.net.au!optus!news!d99.cia.com.au
+Xref: zonnet-feed comp.os.ms-windows.programmer.vxd:2891
+
+> > > 3) May I have some sort of callback for the IRQ in the application or
+it
+> > > has to be in the VxD?
+> >
+> > Not directly. Eventually you can call an application's callback as a
+result
+> > of IRQ but not directly from an interrupt handler.
+> >
+>
+> Thanks for the reply.
+>
+> Your answer to my third question is a bit difficult to understand to
+> me...
+>
+> Where I've to call the application's callback, if not in the event
+> handler, as a result of a IRQ?
+>
+> Putting the question in a different manner; Can I send an event, or call
+> a callback function, to the application (in ring 3) as a result of a IRQ
+> detected in my Vxd (running in ring 0)?
+
+Yes.
+
+In your Vxd you will have an interrupt handler. There is not much can be
+done in that handler and also your driver has to return from the handler as
+quickly as possible. So you may schedule an even so that to process your
+interrupt later on. In other words by doing so you ask VMM to call you back
+later at an appropriate time. In the event handler you will finally be able
+to call an application callback, post message to the application or signal
+an event allocated for this purposes by the application and complete IRQ
+processing.
+
+Regards,
+Dmitri
+
+
+

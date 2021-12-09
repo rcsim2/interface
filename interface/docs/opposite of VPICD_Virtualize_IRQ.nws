@@ -1,0 +1,31 @@
+Path: zonnet-reader-1!zonnet-feed!ams-newsfeed.speedport.net!newsfeed.speedport.net!newsfeeds.belnet.be!news.belnet.be!newsfeed00.sul.t-online.de!newsfeed01.sul.t-online.de!t-online.de!fu-berlin.de!uni-berlin.de!elch.in-berlin.DE!not-for-mail
+From: "Peter Remmers" <pitti@amendestr.in-berlin.de>
+Newsgroups: comp.os.ms-windows.programmer.vxd
+Subject: opposite of VPICD_Virtualize_IRQ ?
+Date: Fri, 23 Jun 2000 14:12:25 +0200
+Organization: Individual Network Berlin e.V.
+Lines: 14
+Message-ID: <961762300.74451@elch.in-berlin.de>
+NNTP-Posting-Host: elch.in-berlin.de (192.109.42.5)
+X-Trace: fu-berlin.de 961762300 5936945 192.109.42.5 (16 35)
+X-Priority: 3
+X-MSMail-Priority: Normal
+X-Newsreader: Microsoft Outlook Express 5.00.2615.200
+X-MimeOLE: Produced By Microsoft MimeOLE V5.00.2615.200
+Cache-Post-Path: elch.in-berlin.de!unknown@amendestr.in-berlin.de
+X-Cache: nntpcache 2.3.3 (see http://www.nntpcache.org/)
+Xref: zonnet-feed comp.os.ms-windows.programmer.vxd:3065
+
+I can hook a hardware interrupt with VPIC_Virtualize_IRQ,
+but how do I unregister my interrupt handler??
+My VxD is dynamically loaded and needs to clean up on unload.
+
+Do I need to use a bimodal handler, which I can setup with
+VPIC_Install_Handler and VPICD_Remove_Handler ?
+
+I'd rather use VPICD_Virtualize_IRQ, because it's simpler
+and my book says, latency is at minimum with this method.
+
+Peter
+
+

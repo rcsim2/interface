@@ -1,0 +1,68 @@
+Path: zonnet-reader-1!zonnet-feed!news-feed1.eu.concert.net!newsfeed.cwix.com!feed1.news.rcn.net!rcn!not-for-mail
+From: "dave porter" <porter@zultranet.com>
+Newsgroups: comp.os.ms-windows.programmer.vxd
+Subject: Re: Unloading VxD and System Information
+Date: Thu, 29 Jun 2000 08:27:42 -0400
+Lines: 52
+Message-ID: <8jffag$7cd$1@bob.news.rcn.net>
+References: <5uw65.9049$vJ6.264766@zonnet-reader-1>
+X-Trace: zEDEvzdHnLGGwJev25MN1QIV887l63Sh7indfZ0ZpSU=
+X-Complaints-To: abuse@rcn.com
+NNTP-Posting-Date: 29 Jun 2000 12:26:56 GMT
+X-Newsreader:  Microsoft Outlook Express 5.00.2919.6600
+X-MSMail-Priority:  Normal
+X-Priority:  3
+X-MimeOLE:  Produced By Microsoft MimeOLE V5.00.2919.6600
+Xref: zonnet-feed comp.os.ms-windows.programmer.vxd:3168
+
+CloseHandle closes a handle, it doesn't
+unload a VXD  :-)
+
+If the handle was opened with FILE_DELETE_ON_CLOSE
+then the load count will be decremented for the
+VXD; if the load count is now zero the VXD
+will be requested to be unloaded.  The VXD
+can deny the request.
+
+All of that is incidental to
+whether 'closing the handle' reports
+success or failure.
+
+I would suppose that if System Information
+says your VXD is still loaded, then your VXD
+is still loaded.  If you don't trust SYstem
+Information, use a kernel debugger (you'll need
+one if you're writing VXDs anyway)
+
+dave
+--
+remove 'z' from my email address
+
+
+"Rik G." <rgosens@zonnet.nl> wrote in message
+news:5uw65.9049$vJ6.264766@zonnet-reader-1...
+> I believe this is is faq...
+>
+> I use this to unload my VxD (it offers no services to other VxDs) :
+>
+>   // Dynamically UNLOAD the Virtual Device
+>      if ( CloseHandle(hVxD) ) {
+>       printf("\nVxD unloaded\n");
+>      }
+>
+> The app reports a successful unload but System Information keeps listing
+my
+> VxD (I did a F5 refresh).
+> Could this be a bug in Sys Info or what?
+>
+> Regards
+>
+> Rik
+> --
+> The rumblynge of a fart, and every soun,
+> Nis but of eir reverberacioun[...]
+>
+>                                    -- Geoffrey Chaucer
+>
+>
+
