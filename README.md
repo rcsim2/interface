@@ -1,5 +1,5 @@
 # interface
-Transmitter interface and VxD parallel port driver
+Transmitter interface and [VxD](https://en.wikipedia.org/wiki/VxD) parallel port driver
 
 ![Interface.doc](https://blacksphere2.github.io/screenshots/ss99.jpg)
 
