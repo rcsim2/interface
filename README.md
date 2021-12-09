@@ -1,2 +1,2 @@
 # interface
-Transmitter interface VxD parallel port driver
+Transmitter interface and VxD parallel port driver
