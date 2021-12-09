@@ -1,7 +1,7 @@
 # interface
 Transmitter interface and VxD parallel port driver
 
-![Tx interface](https://github.com/rcsim2/interface/blob/main/interface/Txint.gif)
+![Interface.doc](https://blacksphere2.github.io/screenshots/ss99.jpg)
 
 ![TXINT](https://blacksphere2.github.io/screenshots/ss91.jpg)
 
